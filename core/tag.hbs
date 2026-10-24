@@ -1,0 +1,33 @@
+{{!< default}}
+
+{{#tag}}
+{{#if feature_image}}
+<header class="gh-archive-hero">
+    <img class="gh-archive-hero-image"
+        srcset="{{img_url feature_image size="l" format="webp"}} 1024w, {{img_url feature_image size="xl" format="webp"}} 1920w"
+        sizes="100vw" src="{{img_url feature_image size="xl" format="webp"}}"
+        width="1920" height="1080" alt="" fetchpriority="high" decoding="async">
+    <div class="gh-wrap gh-archive-hero-inner">
+        {{> "breadcrumbs"}}
+        <p class="gh-eyebrow">{{t "Tag"}}</p>
+        <h1 class="gh-archive-title">{{name}}</h1>
+        {{#if description}}<p class="gh-archive-text">{{description}}</p>{{/if}}
+        <p class="gh-archive-count">{{plural ../pagination.total empty=(t "No posts") singular=(t "1 post") plural=(t "% posts")}}</p>
+    </div>
+</header>
+{{else}}
+<header class="gh-wrap gh-archive-header">
+    {{> "breadcrumbs"}}
+    <p class="gh-eyebrow">{{t "Tag"}}</p>
+    <h1 class="gh-archive-title">{{name}}</h1>
+    {{#if description}}<p class="gh-archive-text">{{description}}</p>{{/if}}
+    <p class="gh-archive-count">{{plural ../pagination.total empty=(t "No posts") singular=(t "1 post") plural=(t "% posts")}}</p>
+</header>
+{{/if}}
+{{/tag}}
+
+<div class="gh-wrap gh-feed-wrap">
+    {{> "post-feed"}}
+</div>
+
+{{pagination}}

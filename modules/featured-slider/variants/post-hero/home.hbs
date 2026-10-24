@@ -1,0 +1,32 @@
+{{!< default}}
+
+{{!-- Homepage (page 1), post-hero flavour: exact, id-based de-duplication like Astrix.
+      With the slider on, featured posts are all shown above (hero + row), so the feed leaves them out.
+      With it off, only the hero post (the first featured one) is left out; the Personal hero consumes none, the Slideshow hero shows several of them (so none are repeated).
+      Overrides post-hero's/core's home.hbs; keep the rest in step with core/home.hbs. --}}
+<h1 class="gh-visually-hidden">{{@site.title}}</h1>
+
+{{> "home-before"}}
+
+<div class="gh-wrap gh-feed-wrap">
+    <h2 class="gh-section-title">{{t "Latest posts"}}</h2>
+    {{#if @custom.show_featured_slider}}
+        {{> "post-feed" skip_featured=true}}
+    {{else}}
+        {{#match @custom.post_hero_style "Personal"}}
+            {{> "post-feed"}}
+        {{else match @custom.post_hero_style "Slideshow"}}
+            {{> "post-feed" skip_featured=true}}
+        {{else}}
+            {{#get "posts" filter="featured:true" limit="1" as |first|}}
+                {{> "post-feed" posts=../posts pagination=../pagination skip_id=first.[0].id}}
+            {{else}}
+                {{> "post-feed"}}
+            {{/get}}
+        {{/match}}
+    {{/if}}
+</div>
+
+{{pagination}}
+
+{{> "home-after"}}

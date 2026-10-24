@@ -1,0 +1,25 @@
+{
+  "name": "photo-grid",
+  "description": "A photograph-first feed: Rows (justified, in order), Masonry, Uniform or Single column; each photo keeps its proportions, caption on hover. Replaces the core feed (an alternative to feed-styles and feed-layouts).",
+  "css": [
+    "modules/photo-grid.css"
+  ],
+  "replaces": {
+    "feed-layout": "photo-grid-layout",
+    "feed-item": "photo-card"
+  },
+  "settings": {
+    "grid_style": {
+      "type": "select",
+      "options": [
+        "Rows",
+        "Masonry",
+        "Uniform",
+        "Single column"
+      ],
+      "default": "Rows",
+      "group": "homepage",
+      "description": "Rows keeps order and fills each row; Masonry columns; Uniform even frames; Single column"
+    }
+  }
+}

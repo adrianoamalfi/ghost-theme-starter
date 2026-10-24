@@ -1,0 +1,7 @@
+{
+  "name": "lightbox",
+  "description": "Zoomable images and galleries with keyboard, swipe and focus trap.",
+  "postCss": ["modules/lightbox.css"],
+  "postJs": { "import": "import { initLightbox } from './modules/lightbox.js';", "init": "initLightbox();" },
+  "slots": { "post-after-content": "lightbox-labels" }
+}

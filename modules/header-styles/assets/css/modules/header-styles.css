@@ -1,0 +1,63 @@
+/* Header: a flat sticky bar. Layouts: Inline (brand | nav | actions) and Stacked (brand centred, nav below).
+   Skins restyle it (e.g. spectra turns it into a floating pill). Sticky offsets elsewhere read --header-h. */
+.gh-hdr { position: sticky; top: 0; z-index: 50; background: color-mix(in oklab, var(--color-bg) 90%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid transparent; transition: border-color .15s ease; view-transition-name: site-header; }
+.gh-hdr.is-scrolled { border-bottom-color: var(--color-border); }
+.gh-hdr-inner { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: var(--space-4); min-height: var(--header-h); width: min(100% - 2 * var(--gutter), var(--wrap)); margin-inline: auto; }
+.gh-hdr-brand { justify-self: start; display: inline-flex; align-items: center; font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; letter-spacing: -.025em; color: var(--color-text); text-decoration: none; }
+.gh-hdr-brand img { height: 2rem; width: auto; }
+.gh-hdr-nav { justify-self: center; }
+.gh-hdr-actions { justify-self: end; display: flex; align-items: center; gap: var(--space-2); }
+.gh-hdr-burger { display: none; }
+.gh-hdr-nav-extras { display: none; }
+
+.gh-hdr-nav ul { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1); }
+.gh-hdr-nav a { display: block; padding: .4rem .85rem; border-radius: 999px; color: var(--color-muted); font-weight: 500; text-decoration: none; transition: background-color .15s ease, color .15s ease; }
+.gh-hdr-nav a:hover { background: var(--color-surface); color: var(--color-text); }
+.gh-hdr-nav .nav-current a { color: var(--color-text); background: var(--color-surface); }
+
+/* Stacked: brand in the middle (actions stay at the right), navigation centred on a second row */
+.gh-hdr--stacked .gh-hdr-inner { grid-template-areas: '. brand actions' 'nav nav nav'; row-gap: 0; padding-bottom: var(--space-2); }
+.gh-hdr--stacked .gh-hdr-brand { grid-area: brand; justify-self: center; }
+.gh-hdr--stacked .gh-hdr-actions { grid-area: actions; }
+.gh-hdr--stacked .gh-hdr-nav { grid-area: nav; }
+.gh-hdr--stacked .gh-hdr-nav ul { justify-content: center; }
+
+/* Centered: navigation left, brand in the middle, actions right, all on one row */
+.gh-hdr--centered .gh-hdr-inner { grid-template-areas: 'nav brand actions'; }
+.gh-hdr--centered .gh-hdr-brand { grid-area: brand; justify-self: center; }
+.gh-hdr--centered .gh-hdr-nav { grid-area: nav; justify-self: start; }
+.gh-hdr--centered .gh-hdr-actions { grid-area: actions; }
+
+/* Sidebar: from 64rem the header becomes a fixed left rail (brand, tagline, vertical menu, actions, foot slot);
+   below that it is the Centered top bar. The page makes room with padding-left on the body. */
+.gh-hdr-tagline, .gh-hdr-rail-foot { display: none; }
+@media (min-width: 64rem) {
+    body:has(.gh-hdr--rail) { --rail-w: 17rem; padding-left: var(--rail-w); }
+    .gh-hdr--rail { position: fixed; inset: 0 auto 0 0; width: var(--rail-w); height: 100dvh; overflow-y: auto; border-bottom: 0; border-right: 1px solid var(--color-border); backdrop-filter: none; background: var(--color-surface); z-index: 60; }
+    .gh-hdr--rail .gh-hdr-inner { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-5); width: auto; min-height: 100%; margin: 0; padding: var(--space-6) var(--space-5) var(--space-5); }
+    .gh-hdr--rail .gh-hdr-brand { justify-self: auto; font-size: 1.9rem; line-height: .95; text-wrap: balance; }
+    .gh-hdr--rail .gh-hdr-tagline { display: block; margin: 0; color: var(--color-muted); max-width: 22ch; font-size: .8rem; }
+    .gh-hdr--rail .gh-hdr-nav { justify-self: auto; margin-top: var(--space-4); }
+    .gh-hdr--rail .gh-hdr-nav ul { flex-direction: column; align-items: flex-start; gap: .15rem; }
+    .gh-hdr--rail .gh-hdr-nav a { padding: .35rem 0; font-size: 1.05rem; }
+    .gh-hdr--rail .gh-hdr-actions { justify-self: auto; margin-top: var(--space-3); margin-left: -.5rem; }
+    .gh-hdr--rail .gh-hdr-burger, .gh-hdr--rail .gh-hdr-nav-extras { display: none; }
+    .gh-hdr--rail .gh-hdr-rail-foot { display: grid; gap: var(--space-4); justify-items: start; margin-top: auto; padding-top: var(--space-5); }
+}
+
+@media (max-width: 47.99rem) {
+    .gh-hdr-inner, .gh-hdr--stacked .gh-hdr-inner { display: flex; flex-wrap: wrap; gap: var(--space-2); padding-block: var(--space-2); }
+    .gh-hdr--stacked .gh-hdr-brand, .gh-hdr--centered .gh-hdr-brand { justify-self: start; }
+    .gh-hdr-actions { margin-left: auto; }
+    .gh-hdr-burger { display: inline-grid; }
+    .gh-hdr-account { display: none; }
+    /* the colour switch lives in the open menu on small screens */
+    .gh-hdr-actions .gh-scheme-switch { display: none; }
+    .gh-hdr-nav-extras { display: flex; margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--color-border); }
+    .gh-hdr-nav-extras:not(:has(*)) { display: none; }
+    .gh-hdr-nav, .gh-hdr--stacked .gh-hdr-nav { display: none; flex: 1 0 100%; order: 4; }
+    .gh-hdr-nav.is-open { display: block; }
+    .gh-hdr-nav ul { flex-direction: column; align-items: stretch; gap: 0; }
+    .gh-hdr-nav a { padding: .7rem .9rem; font-size: 1rem; }
+}
+@media print { .gh-hdr { display: none; } }

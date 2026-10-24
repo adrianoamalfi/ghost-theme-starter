@@ -1,0 +1,39 @@
+{{!< default}}
+
+{{!-- Page template "Series": a page, then every public tag as a tile (cover, name, number of photographs).
+      Give each tag a feature image in Ghost Admin to use it as the series cover. --}}
+{{#post}}
+<header class="gh-wrap gh-series-head">
+    <p class="gh-eyebrow">{{t "Series"}}</p>
+    <h1 class="gh-series-title">{{title}}</h1>
+    {{#if custom_excerpt}}<p class="gh-series-lede">{{custom_excerpt}}</p>{{/if}}
+    {{#if content}}<section class="gh-content gh-series-intro">{{content}}</section>{{/if}}
+</header>
+{{/post}}
+
+{{!-- Bounded limit (gscan rejects limit="all"): the 100 most used tags --}}
+{{#get "tags" limit="100" include="count.posts" order="count.posts desc" as |series|}}
+    {{#if series}}
+        <ul class="gh-wrap gh-series">
+            {{#foreach series}}
+                {{#if count.posts}}
+                    <li>
+                        <a class="gh-series-card" href="{{url}}">
+                            {{#if feature_image}}
+                                <img class="gh-series-image" src="{{img_url feature_image size="l" format="webp"}}"
+                                    srcset="{{img_url feature_image size="m" format="webp"}} 640w, {{img_url feature_image size="l" format="webp"}} 1024w, {{img_url feature_image size="xl" format="webp"}} 1920w"
+                                    sizes="(max-width: 40rem) 100vw, 50vw" width="1600" height="1067" alt="" loading="lazy" decoding="async">
+                            {{else}}
+                                <span class="gh-series-empty" aria-hidden="true"></span>
+                            {{/if}}
+                            <span class="gh-series-body">
+                                <span class="gh-series-name">{{name}}</span>
+                                <span class="gh-series-count">{{plural count.posts empty=(t "No posts") singular=(t "1 post") plural=(t "% posts")}}</span>
+                            </span>
+                        </a>
+                    </li>
+                {{/if}}
+            {{/foreach}}
+        </ul>
+    {{/if}}
+{{/get}}

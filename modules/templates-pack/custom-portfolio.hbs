@@ -1,0 +1,21 @@
+{{!< default}}
+
+{{!-- Page template "Portfolio": the page content, then a responsive grid of project posts.
+      Tag your project posts #portfolio or #project (internal tags also work as plain tags
+      named "portfolio" / "project") and they appear here, newest first. --}}
+{{#post}}
+    {{> "pack-page"}}
+{{/post}}
+
+{{#get "posts" filter="tag:[portfolio,project]" include="tags,authors" limit="24" order="published_at desc" as |projects|}}
+    {{#if projects}}
+        <section class="gh-wrap gh-pack-section" aria-labelledby="gh-portfolio-heading">
+            <h2 class="gh-pack-section-title" id="gh-portfolio-heading">{{t "Projects"}}</h2>
+            <div class="gh-feed gh-feed--portfolio">
+                {{#foreach projects}}{{> "feed-item" force_lazy=true}}{{/foreach}}
+            </div>
+        </section>
+    {{else}}
+        {{> "empty-state"}}
+    {{/if}}
+{{/get}}

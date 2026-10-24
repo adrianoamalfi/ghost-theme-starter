@@ -1,0 +1,21 @@
+node_modules
+dist
+assets/built
+package.json
+package-lock.json
+
+# Starter-owned data: kept byte-identical so `starter:sync` can update it
+locales
+.starter.json
+
+# Ghost Handlebars templates: Prettier's glimmer parser mangles Ghost-specific
+# helpers ({{#foreach}}, {{> "partial"}}, subexpressions), so leave .hbs alone.
+**/*.hbs
+
+# CSS is hand-formatted (compact rules); docs and generated content keep their own style
+**/*.css
+**/*.md
+**/*.html
+.github
+docs
+demo

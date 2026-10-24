@@ -1,0 +1,12 @@
+.gh-share {
+    width: min(100% - 2 * var(--gutter), var(--measure));
+    margin: var(--space-7) auto 0; padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+    display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-2);
+}
+.gh-share-label { margin-right: var(--space-1); color: var(--color-muted); font-size: .9rem; font-weight: 600; }
+.gh-share .gh-icon-button svg { width: 20px; height: 20px; }
+.gh-share-support { margin-left: auto; }
+.gh-share-copy.is-copied { color: var(--accent-ink); }
+.gh-share [hidden] { display: none; }
+@media (max-width: 40rem) { .gh-share-support { margin-left: 0; } }

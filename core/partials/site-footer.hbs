@@ -1,0 +1,24 @@
+{{#> footer-layout}}
+<footer class="gh-footer">
+    <div class="gh-footer-inner gh-wrap">
+        <div class="gh-footer-main">
+            <a class="gh-footer-brand" href="{{@site.url}}">{{@site.title}}</a>
+            {{#if @site.description}}<p class="gh-footer-bio">{{@site.description}}</p>{{/if}}
+        </div>
+
+        {{#if @site.secondary_navigation}}
+            <nav class="gh-footer-nav" aria-label="{{t "Secondary navigation"}}">{{navigation type="secondary"}}</nav>
+        {{/if}}
+
+        {{> "footer-extra"}}
+
+        {{recommendations limit="4"}}
+
+        <div class="gh-footer-meta">
+            <span>&copy; {{date format="YYYY"}} {{@site.title}}</span>
+            {{> "footer-credits"}}
+            <span>{{t "Published with"}} <a href="https://ghost.org" target="_blank" rel="noopener noreferrer">Ghost <span class="gh-visually-hidden">{{t "Opens in a new tab"}}</span></a></span>
+        </div>
+    </div>
+</footer>
+{{/footer-layout}}

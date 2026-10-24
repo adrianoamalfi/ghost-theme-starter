@@ -1,0 +1,12 @@
+{{!-- Spectra skin fonts. Declared inline (not in the stylesheet) so the url() uses the
+      same version-hashed {{asset}} URL as the preload: one download, not two.
+      Triple-stache: inside <style> an escaped "=" in ?v= would break the URL.
+      Never write a bare helper call inside CSS comments here: Handlebars evaluates it. --}}
+<link rel="preload" href="{{asset "fonts/bricolage-grotesque-latin-var.woff2"}}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{asset "fonts/instrument-sans-latin-wght-normal.woff2"}}" as="font" type="font/woff2" crossorigin>
+<style>
+    @font-face { font-family: 'Bricolage Grotesque'; font-style: normal; font-weight: 200 800; font-stretch: 75% 100%; font-display: swap; src: url("{{{asset "fonts/bricolage-grotesque-latin-var.woff2"}}}") format("woff2"); }
+    @font-face { font-family: 'Instrument Sans'; font-style: normal; font-weight: 400 700; font-display: swap; src: url("{{{asset "fonts/instrument-sans-latin-wght-normal.woff2"}}}") format("woff2"); }
+    @font-face { font-family: 'Instrument Sans'; font-style: italic; font-weight: 400 700; font-display: swap; src: url("{{{asset "fonts/instrument-sans-latin-wght-italic.woff2"}}}") format("woff2"); }
+</style>
+{{!-- @starter:slot --}}

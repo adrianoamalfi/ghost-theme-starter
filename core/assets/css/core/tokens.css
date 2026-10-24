@@ -1,0 +1,72 @@
+/*
+ * Core design tokens: the contract between core and skin.
+ * Core components read ONLY these variables. A skin restyles a theme by
+ * redefining them (skin/tokens.css) and, if needed, adding rules in the
+ * `skin` layer. Never hard-code colours, sizes or fonts in core CSS.
+ *
+ * Colours use light-dark(), so a skin overrides a token ONCE for both
+ * schemes. The scheme itself comes from color-scheme: the system preference
+ * by default, forced by data-scheme="light|dark" (set by the scheme toggle).
+ */
+:root {
+    color-scheme: light dark;
+
+    /* Brand: --accent comes from Ghost's accent colour (see default.hbs) */
+    --accent: #3b5bdb;
+    --accent-ink: light-dark(color-mix(in oklab, var(--accent) 72%, black), color-mix(in oklab, var(--accent) 70%, white));
+    --accent-soft: color-mix(in oklab, var(--accent) 12%, var(--color-bg));
+    /* Solid-fill accent and the ink on it. Skins can derive an AA-safe pair from any accent. */
+    --accent-fill: var(--accent);
+    --on-accent: #fff;
+
+    /* Surface and text */
+    --color-bg: light-dark(#fff, #0f1013);
+    --color-surface: light-dark(#f6f6f7, #17181c);
+    --color-text: light-dark(#17181c, #ececf0);
+    --color-muted: light-dark(#5c6068, #9a9ea8);
+    --color-border: light-dark(#e3e4e8, #2a2c33);
+
+    /* Typography */
+    --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --font-serif: Georgia, 'Times New Roman', serif;
+    --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    /* Ghost injects --gh-font-* when the theme declares heading_font / body_font */
+    --font-body: var(--gh-font-body, var(--font-sans));
+    --font-heading: var(--gh-font-heading, var(--font-sans));
+    --leading: 1.65;
+    --measure: 68ch;
+
+    /* Space and shape */
+    --space-1: .25rem; --space-2: .5rem; --space-3: .75rem; --space-4: 1rem;
+    --space-5: 1.5rem; --space-6: 2rem; --space-7: 3rem; --space-8: 5rem;
+    --radius: .5rem;
+    --radius-lg: 1rem;
+    --radius-tile: 1.25rem;
+    --gap: 1rem;
+    --wrap: 76rem;
+    --gutter: clamp(1rem, 4vw, 2rem);
+    --header-h: 4rem;
+
+    /* Display type: poster-sized and fluid. Skins and modules use these for hero titles and section headings. */
+    --display-1: clamp(2.75rem, 1.1rem + 5.6vw, 5.75rem);
+    --display-2: clamp(2rem, 1.05rem + 3.2vw, 3.5rem);
+    --display-3: clamp(1.5rem, 1.15rem + 1.5vw, 2.25rem);
+    --ease: cubic-bezier(.2, .7, .2, 1);
+
+    /* Forced-dark ground for heroes and text-over-photo, whatever the scheme */
+    --surface-dark: oklch(.2 .02 270);
+
+    /* Tile: the surface used by heroes and the closing footer card */
+    --tile-tint: color-mix(in oklab, var(--accent) 9%, var(--color-bg));
+}
+
+:root[data-scheme='light'] { color-scheme: light; }
+:root[data-scheme='dark'] { color-scheme: dark; }
+
+@media (max-width: 40rem) {
+    :root {
+        --display-1: clamp(2.25rem, 1.35rem + 9vw, 3.5rem);
+        --display-2: clamp(1.875rem, 1.25rem + 6vw, 2.75rem);
+        --display-3: clamp(1.375rem, 1.1rem + 3vw, 1.875rem);
+    }
+}

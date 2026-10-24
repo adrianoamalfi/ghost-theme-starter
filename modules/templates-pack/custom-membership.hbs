@@ -1,0 +1,36 @@
+{{!< default}}
+
+{{!-- Page template "Membership": the page content, then your paid tiers with a Portal sign-up button each. --}}
+{{#post}}
+    {{> "pack-page" eyebrow=(t "Membership")}}
+{{/post}}
+
+{{#get "tiers" filter="type:paid" include="monthly_price,yearly_price,benefits" limit="6" as |tiers|}}
+    {{#if tiers}}
+        <section class="gh-wrap gh-pack-section gh-tiers" aria-label="{{t "Membership"}}">
+            {{#foreach tiers}}
+                <div class="gh-tile gh-tier">
+                    <h2 class="gh-tier-name">{{name}}</h2>
+                    {{#if description}}<p class="gh-tier-description">{{description}}</p>{{/if}}
+                    {{#if benefits}}<ul class="gh-tier-benefits">{{#foreach benefits}}<li>{{> "icons/check"}}<span>{{this}}</span></li>{{/foreach}}</ul>{{/if}}
+                    <div class="gh-tier-options">
+                        {{#if monthly_price}}
+                            <div class="gh-tier-option">
+                                <p class="gh-tier-price"><span class="gh-tier-amount">{{price monthly_price currency=currency}}</span> <span class="gh-tier-period">/ {{t "month"}}</span></p>
+                                <a class="gh-button" href="#/portal/signup/{{id}}/monthly" data-portal="signup/{{id}}/monthly" aria-label="{{t "Choose this plan"}}: {{name}}, {{t "month"}}">{{t "Choose this plan"}}</a>
+                            </div>
+                        {{/if}}
+                        {{#if yearly_price}}
+                            <div class="gh-tier-option">
+                                <p class="gh-tier-price"><span class="gh-tier-amount">{{price yearly_price currency=currency}}</span> <span class="gh-tier-period">/ {{t "year"}}</span></p>
+                                <a class="gh-button" href="#/portal/signup/{{id}}/yearly" data-portal="signup/{{id}}/yearly" aria-label="{{t "Choose this plan"}}: {{name}}, {{t "year"}}">{{t "Choose this plan"}}</a>
+                            </div>
+                        {{/if}}
+                    </div>
+                </div>
+            {{/foreach}}
+        </section>
+    {{/if}}
+{{/get}}
+
+{{> "subscribe-form"}}

@@ -1,0 +1,31 @@
+{
+  "name": "social-links",
+  "description": "Social icon row (Ghost social accounts + GitHub, Hugging Face, email, free URL, RSS) in the footer-extra slot.",
+  "css": [
+    "modules/social-links.css"
+  ],
+  "slots": {
+    "footer-extra": "social-links",
+    "personal-hero-extra": "social-links",
+    "contact-extra": "social-links",
+    "header-rail-foot": "social-links"
+  },
+  "settings": {
+    "social_github": {
+      "type": "text",
+      "description": "GitHub username. Shown as an icon next to the Ghost social accounts."
+    },
+    "social_huggingface": {
+      "type": "text",
+      "description": "Hugging Face username. Shown as an icon next to the Ghost social accounts."
+    },
+    "social_email": {
+      "type": "text",
+      "description": "Public contact email. Shown as a mail icon next to the social accounts."
+    },
+    "social_custom_url": {
+      "type": "text",
+      "description": "Full URL of one extra profile (Medium, Telegram, Scholar…). Shown with a globe icon."
+    }
+  }
+}

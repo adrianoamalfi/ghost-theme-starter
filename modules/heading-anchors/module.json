@@ -1,0 +1,7 @@
+{
+  "name": "heading-anchors",
+  "description": "Hover permalink on h2/h3 that copies the section URL.",
+  "postCss": ["modules/heading-anchors.css"],
+  "postJs": { "import": "import { initHeadingAnchors } from './modules/heading-anchors.js';", "init": "initHeadingAnchors();" },
+  "slots": { "post-after-content": "heading-anchors-labels" }
+}

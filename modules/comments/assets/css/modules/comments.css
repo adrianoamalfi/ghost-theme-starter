@@ -1,0 +1,1 @@
+.gh-comments { width: min(100% - 2 * var(--gutter), var(--measure)); margin: var(--space-8) auto; }

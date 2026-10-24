@@ -1,0 +1,4 @@
+.gh-social-links { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+.gh-social-links .gh-icon-button { color: var(--color-muted); }
+.gh-social-links .gh-icon-button:hover { color: var(--color-text); }
+.gh-social-links svg { width: 20px; height: 20px; }

@@ -1,0 +1,12 @@
+{{!-- Previous / next photograph, as thumbnails, within the series (the primary tag) or across the site when the
+      post has none. Arrow keys follow the links (modules/photo-nav.js). Context: a post. --}}
+<nav class="gh-photo-nav gh-wrap" aria-label="{{t "More posts"}}">
+    {{#if primary_tag}}
+        {{#prev_post in="primary_tag"}}{{> "photo-nav-link" dir="prev"}}{{/prev_post}}
+        {{#next_post in="primary_tag"}}{{> "photo-nav-link" dir="next"}}{{/next_post}}
+    {{else}}
+        {{#prev_post}}{{> "photo-nav-link" dir="prev"}}{{/prev_post}}
+        {{#next_post}}{{> "photo-nav-link" dir="next"}}{{/next_post}}
+    {{/if}}
+    <p class="gh-photo-nav-hint" aria-hidden="true">← → &nbsp;{{t "Use the arrow keys to browse"}}</p>
+</nav>

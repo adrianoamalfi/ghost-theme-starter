@@ -1,0 +1,18 @@
+{{!-- Context: a post/page. Params: eager=true for the LCP image. --}}
+{{#if feature_image}}
+<figure class="gh-feature-image">
+    <img
+        srcset="{{img_url feature_image size="m" format="webp"}} 640w,
+                {{img_url feature_image size="l" format="webp"}} 1024w,
+                {{img_url feature_image size="xl" format="webp"}} 1920w"
+        sizes="(max-width: 1200px) 100vw, 1200px"
+        src="{{img_url feature_image size="xl" format="webp"}}"
+        {{#if feature_image_width}}width="{{feature_image_width}}" height="{{feature_image_height}}"{{else}}width="1920" height="1080"{{/if}}
+        alt="{{feature_image_alt}}"
+        {{#if eager}}loading="eager" fetchpriority="high"{{else}}loading="lazy"{{/if}}
+        decoding="async"
+        style="view-transition-name: gh-post-{{id}}"
+    >
+    {{#if feature_image_caption}}<figcaption>{{{feature_image_caption}}}</figcaption>{{/if}}
+</figure>
+{{/if}}

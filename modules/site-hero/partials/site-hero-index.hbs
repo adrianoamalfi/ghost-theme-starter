@@ -1,0 +1,23 @@
+<section class="gh-sh gh-sh--index">
+    <div class="gh-wrap gh-sh-i-grid">
+        <div class="gh-tile gh-sh-i-id{{#if @site.cover_image}} gh-photo-ink{{/if}}">
+            {{#if @site.cover_image}}{{> "site-hero-cover" class="gh-sh-bg"}}<div class="gh-sh-scrim"></div>{{/if}}
+            <div>
+                {{#if @custom.hero_eyebrow}}<p class="gh-sh-hello">{{@custom.hero_eyebrow}}</p>{{/if}}
+                <h1 class="gh-sh-title gh-sh-i-title">{{@site.title}}</h1>
+                {{#if @site.description}}<p class="gh-sh-i-desc">{{@site.description}}</p>{{/if}}
+            </div>
+            <div class="gh-sh-i-id-foot">{{> "subscribe-button"}}</div>
+        </div>
+        {{#get "tags" limit="5" include="count.posts" order="count.posts desc"}}
+            <nav class="gh-tile gh-sh-i-index" aria-label="{{t "Topics"}}">
+                <p class="gh-sh-label">{{t "Topics"}}</p>
+                <ul>
+                    {{#foreach tags}}
+                        {{#if count.posts}}<li><a href="{{url}}"><em>{{name}}</em><small>{{plural count.posts empty=(t "No posts") singular=(t "1 post") plural=(t "% posts")}}</small></a></li>{{/if}}
+                    {{/foreach}}
+                </ul>
+            </nav>
+        {{/get}}
+    </div>
+</section>

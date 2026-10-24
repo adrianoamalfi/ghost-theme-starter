@@ -1,0 +1,17 @@
+.gh-post-upgrade {
+    width: min(100% - 2 * var(--gutter), var(--measure)); margin: var(--space-7) auto; text-align: center;
+    padding: clamp(var(--space-5), 5vw, var(--space-7)); border-radius: var(--radius-lg);
+    border: 1px solid color-mix(in oklab, var(--accent) 35%, var(--color-border));
+    background: linear-gradient(160deg, var(--accent-soft), var(--color-surface));
+}
+.gh-post-upgrade-badge {
+    display: inline-flex; align-items: center; gap: var(--space-1); margin-bottom: var(--space-4);
+    padding: .15rem .8rem; border-radius: 999px; background: var(--accent-fill); color: var(--on-accent);
+    font-size: .85rem; font-weight: 700;
+}
+.gh-post-upgrade-badge svg { width: 1rem; height: 1rem; }
+.gh-post-upgrade-title { font-size: clamp(1.5rem, 4vw, 2.2rem); max-width: 18ch; margin: 0 auto var(--space-3); }
+.gh-post-upgrade-text { max-width: 42ch; margin: 0 auto var(--space-5); color: var(--color-muted); }
+.gh-post-upgrade-signin { margin-top: var(--space-3); font-size: .9rem; color: var(--color-muted); }
+.gh-post-upgrade-signin a { color: var(--color-text); font-weight: 600; }
+@media (max-width: 40rem) { .gh-post-upgrade .gh-button { width: 100%; } }

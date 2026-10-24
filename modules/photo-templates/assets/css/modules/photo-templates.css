@@ -1,0 +1,70 @@
+/* ---- Series: tiles of tags ---- */
+.gh-series-head { padding-block: var(--space-7) var(--space-5); display: grid; gap: var(--space-3); }
+.gh-series-title { font-size: var(--display-2); letter-spacing: -.02em; }
+.gh-series-lede { max-width: var(--measure); font-size: 1.2rem; color: var(--color-muted); }
+.gh-series-intro { max-width: var(--measure); }
+.gh-series { display: grid; gap: var(--space-5) var(--space-4); grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr)); padding-bottom: var(--space-8); }
+.gh-series-card { display: grid; gap: var(--space-3); color: inherit; text-decoration: none; }
+.gh-series-image, .gh-series-empty { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; background: var(--color-surface); transition: filter .4s var(--ease); }
+.gh-series-card:hover .gh-series-image { filter: brightness(1.08); }
+.gh-series-body { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); }
+.gh-series-name { font-family: var(--font-heading); font-size: 1.5rem; line-height: 1.15; }
+.gh-series-count { font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--color-muted); }
+
+/* ---- Photo post: the image is the page ---- */
+.gh-photo-page { padding-bottom: var(--space-6); }
+.gh-photo-hero { margin: 0; display: grid; justify-items: center; background: var(--color-surface); }
+.gh-photo-hero img { width: 100%; height: auto; max-height: 88vh; object-fit: contain; }
+.gh-photo-hero figcaption { padding: var(--space-3) var(--gutter); font-size: .875rem; color: var(--color-muted); text-align: center; }
+.gh-photo-head { display: grid; gap: var(--space-5) var(--space-7); grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); align-items: end; padding-block: var(--space-6) var(--space-5); }
+.gh-photo-heading { font-size: var(--display-3); letter-spacing: -.01em; margin-block: var(--space-2); }
+.gh-photo-lede { max-width: var(--measure); color: var(--color-muted); }
+.gh-photo-head .gh-meta { justify-content: flex-end; }
+@media (max-width: 48rem) { .gh-photo-head { grid-template-columns: 1fr; } .gh-photo-head .gh-meta { justify-content: flex-start; } }
+
+/* ---- About: portrait + text ---- */
+.gh-about { display: grid; gap: var(--space-6) clamp(2rem, 6vw, 5rem); grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); align-items: start; padding-block: var(--space-7) var(--space-8); }
+.gh-about--text-only { grid-template-columns: minmax(0, var(--measure)); justify-content: center; }
+.gh-about-media { margin: 0; position: sticky; top: calc(var(--header-h) + var(--space-5)); }
+.gh-about-media img { width: 100%; height: auto; }
+.gh-about-media figcaption { margin-top: var(--space-2); font-size: .8125rem; color: var(--color-muted); }
+.gh-about-title { font-size: var(--display-2); letter-spacing: -.02em; margin-bottom: var(--space-4); }
+.gh-about-lede { font-size: 1.3rem; color: var(--color-muted); margin-bottom: var(--space-5); max-width: var(--measure); }
+.gh-about .gh-content { display: block; max-width: var(--measure); }
+@media (max-width: 56rem) { .gh-about { grid-template-columns: 1fr; } .gh-about-media { position: static; max-width: 28rem; } }
+@media (prefers-reduced-motion: reduce) { .gh-series-image { transition: none; } }
+
+/* ---- Photo page: print request and thumbnail navigation ---- */
+.gh-photo-aside { display: grid; gap: var(--space-4); justify-items: end; align-content: end; }
+@media (max-width: 48rem) { .gh-photo-aside { justify-items: start; } }
+.gh-photo-nav { display: grid; gap: var(--gap); grid-template-columns: minmax(0, 18rem) 1fr minmax(0, 18rem); margin-top: var(--space-7); padding-bottom: var(--space-6); }
+.gh-photo-nav-link { display: grid; gap: var(--space-3); color: inherit; text-decoration: none; }
+.gh-photo-nav-link--next { grid-column: 3; text-align: right; }
+.gh-photo-nav-link--prev:only-of-type { grid-column: 1; }
+.gh-photo-nav-thumb { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; background: var(--color-surface); transition: filter .35s var(--ease), transform .6s var(--ease); }
+.gh-photo-nav-link { overflow: hidden; }
+.gh-photo-nav-link:hover .gh-photo-nav-thumb { filter: brightness(1.1); transform: scale(1.02); }
+.gh-photo-nav-kicker { display: block; font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--color-muted); }
+.gh-photo-nav-title { display: block; font-family: var(--font-heading); font-size: 1.35rem; line-height: 1.2; }
+.gh-photo-nav-hint { grid-column: 1 / -1; text-align: center; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--color-muted); }
+@media (hover: none) { .gh-photo-nav-hint { display: none; } }
+@media (max-width: 40rem) { .gh-photo-nav { grid-template-columns: 1fr; } .gh-photo-nav-link--next { grid-column: 1; text-align: left; } }
+.gh-photo-hero img { cursor: zoom-in; }
+
+/* ---- Contact: text beside a card ---- */
+.gh-contact { padding-block: var(--space-7) var(--space-8); }
+.gh-contact-head { display: grid; gap: var(--space-3); margin-bottom: var(--space-6); }
+.gh-contact-title { font-size: var(--display-2); letter-spacing: -.02em; }
+.gh-contact-lede { max-width: var(--measure); font-size: 1.3rem; color: var(--color-muted); }
+.gh-contact-grid { display: grid; gap: var(--space-6) clamp(2rem, 6vw, 5rem); grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); align-items: start; }
+.gh-contact-body { display: block; max-width: var(--measure); }
+.gh-contact-card { display: grid; gap: var(--space-3); justify-items: start; padding: var(--space-5); border: 1px solid var(--color-border); position: sticky; top: calc(var(--header-h) + var(--space-5)); }
+.gh-contact-label { font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--color-muted); }
+.gh-contact-email { font-family: var(--font-heading); font-size: 1.5rem; word-break: break-word; }
+.gh-contact-card .gh-social-links { margin-top: var(--space-2); }
+@media (max-width: 56rem) { .gh-contact-grid { grid-template-columns: 1fr; } .gh-contact-card { position: static; } }
+
+/* Locked photograph: only a 30px stand-in is shipped, stretched and blurred */
+.gh-photo-hero--locked { overflow: hidden; }
+.gh-photo-hero--locked img { filter: blur(18px) saturate(.85); transform: scale(1.08); max-height: 60vh; }
+

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+<head>
+    {{!-- No-flash colour scheme: must run before any CSS is applied --}}
+    <script>(function () {
+        document.documentElement.classList.add('js');
+        try {
+            var s = localStorage.getItem('gh-scheme');
+            if (s === 'light' || s === 'dark') { document.documentElement.setAttribute('data-scheme', s); }
+        } catch (e) { /* storage unavailable */ }
+    })();</script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>{{meta_title}}</title>
+
+    <link rel="stylesheet" href="{{asset "built/screen.css"}}">
+    {{#is "post, page"}}<link rel="stylesheet" href="{{asset "built/post.css"}}">{{/is}}
+    <link rel="alternate" type="application/rss+xml" title="{{@site.title}}" href="{{@site.url}}/rss/">
+
+    {{!-- Extension point: a theme adds fonts, preloads, inline @font-face by
+          providing partials/head-extra.hbs. Never edit this file for that. --}}
+    {{> "head-extra"}}
+
+    {{#if @site.accent_color}}<style>:root { --accent: {{@site.accent_color}}; }</style>{{/if}}
+    {{ghost_head}}
+</head>
+<body class="{{body_class}}">
+
+    <a class="gh-skip-link" href="#gh-main-content">{{t "Skip to content"}}</a>
+
+    {{> "site-header"}}
+
+    <main id="gh-main-content" class="gh-main">
+        {{{body}}}
+    </main>
+
+    {{> "site-footer"}}
+
+    <button class="gh-back-to-top" type="button" aria-label="{{t "Back to top"}}" hidden>
+        {{> "icons/arrow-up"}}
+    </button>
+
+    <script defer src="{{asset "built/main.js"}}"></script>
+    {{#is "post, page"}}<script defer src="{{asset "built/post.js"}}"></script>{{/is}}
+    {{ghost_foot}}
+</body>
+</html>

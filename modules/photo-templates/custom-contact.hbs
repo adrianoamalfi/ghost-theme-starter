@@ -1,0 +1,28 @@
+{{!< default}}
+
+{{!-- Page template "Contact": the page content beside a contact card (email, print request, social links).
+      Set contact_email in Design settings; prints, licensing and availability go in the page content. --}}
+{{#post}}
+<article class="gh-wrap gh-contact {{post_class}}">
+    <header class="gh-contact-head">
+        <p class="gh-eyebrow">{{t "Contact"}}</p>
+        <h1 class="gh-contact-title">{{title}}</h1>
+        {{#if custom_excerpt}}<p class="gh-contact-lede">{{custom_excerpt}}</p>{{/if}}
+    </header>
+
+    <div class="gh-contact-grid">
+        <section class="gh-content gh-contact-body">
+            {{content}}
+        </section>
+
+        <aside class="gh-contact-card" aria-label="{{t "Contact"}}">
+            {{#if @custom.contact_email}}
+                <p class="gh-contact-label">{{t "Email"}}</p>
+                <a class="gh-contact-email" href="mailto:{{@custom.contact_email}}">{{@custom.contact_email}}</a>
+                <a class="gh-button" href="mailto:{{@custom.contact_email}}?subject={{encode (t "Print request")}}">{{t "Request a print"}}</a>
+            {{/if}}
+            {{> "contact-extra"}}
+        </aside>
+    </div>
+</article>
+{{/post}}

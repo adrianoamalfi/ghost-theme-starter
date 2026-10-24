@@ -1,0 +1,14 @@
+{{!< default}}
+
+<h1 class="gh-visually-hidden">{{@site.title}}</h1>
+
+{{#is "home"}}{{> "home-before"}}{{/is}}
+
+<div class="gh-wrap gh-feed-wrap">
+    <h2 class="gh-section-title">{{t "Latest posts"}}</h2>
+    {{> "post-feed"}}
+</div>
+
+{{pagination}}
+
+{{> "home-after"}}

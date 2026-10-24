@@ -1,0 +1,9 @@
+{{!-- The post list used by home, index, tag and author. Context: a page with `posts`.
+      Params: skip_from, skip_featured, skip_id (see feed-loop). The `feed-layout` slot lets a module restyle the container. --}}
+{{#> feed-layout}}
+    {{#if posts}}
+        <div class="gh-feed">{{> "feed-loop"}}</div>
+    {{else}}
+        {{> "empty-state"}}
+    {{/if}}
+{{/feed-layout}}

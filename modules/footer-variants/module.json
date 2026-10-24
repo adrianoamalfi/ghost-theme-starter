@@ -1,0 +1,26 @@
+{
+  "name": "footer-variants",
+  "description": "Two footer layouts from Spectra: Colophon (ruled columns) and Signoff (closing tile with subscribe). Replaces the core footer via the footer-layout slot.",
+  "css": [
+    "modules/footer-variants.css"
+  ],
+  "replaces": {
+    "footer-layout": "footer-dispatch"
+  },
+  "settings": {
+    "footer_style": {
+      "type": "select",
+      "options": [
+        "Colophon",
+        "Signoff"
+      ],
+      "default": "Colophon",
+      "description": "Colophon: quiet, ruled columns. Signoff: closing tile with subscribe"
+    },
+    "footer_text": {
+      "type": "text",
+      "default": "",
+      "description": "Optional line shown in the footer. Falls back to the site description"
+    }
+  }
+}

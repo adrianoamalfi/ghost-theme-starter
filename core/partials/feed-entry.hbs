@@ -1,0 +1,11 @@
+{{!-- One feed entry honouring the skip rules. Context: a post. Params (pass them explicitly from the loop):
+        skip_featured  leave out featured posts      skip_id  leave out the post with this id --}}
+{{#if skip_featured}}
+    {{#unless featured}}{{> "feed-item" force_lazy=true}}{{/unless}}
+{{else}}
+    {{#if skip_id}}
+        {{#match id "!=" skip_id}}{{> "feed-item" force_lazy=true}}{{/match}}
+    {{else}}
+        {{> "feed-item" force_lazy=true}}
+    {{/if}}
+{{/if}}

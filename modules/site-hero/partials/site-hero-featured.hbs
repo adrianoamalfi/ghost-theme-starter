@@ -1,0 +1,22 @@
+<section class="gh-sh gh-sh--featured">
+    <div class="gh-wrap gh-sh-f-grid">
+        <div class="gh-tile gh-sh-f-id{{#if @site.cover_image}} gh-photo-ink{{/if}}">
+            {{#if @site.cover_image}}{{> "site-hero-cover" class="gh-sh-bg"}}<div class="gh-sh-scrim"></div>{{/if}}
+            <div>
+                {{#if @custom.hero_eyebrow}}<p class="gh-sh-hello">{{@custom.hero_eyebrow}}</p>{{/if}}
+                <h1 class="gh-sh-title gh-sh-f-title">{{@site.title}}</h1>
+            </div>
+            <div class="gh-sh-f-id-foot">
+                {{#if @site.description}}<p class="gh-sh-f-desc">{{@site.description}}</p>{{/if}}
+                {{> "subscribe-button"}}
+            </div>
+        </div>
+        {{#get "posts" filter="featured:true" limit="1" as |featured|}}
+            {{#foreach featured}}{{> "site-hero-featured-card"}}{{/foreach}}
+        {{else}}
+            {{#get "posts" limit="1" as |latest|}}
+                {{#foreach latest}}{{> "site-hero-featured-card"}}{{/foreach}}
+            {{/get}}
+        {{/get}}
+    </div>
+</section>

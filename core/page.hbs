@@ -1,0 +1,18 @@
+{{!< default}}
+
+{{#page}}
+<article class="gh-article gh-article--page {{post_class}}">
+    {{#if @page.show_title_and_feature_image}}
+        <header class="gh-article-header">
+            <h1 class="gh-article-title">{{title}}</h1>
+            {{#if custom_excerpt}}<p class="gh-article-excerpt">{{custom_excerpt}}</p>{{/if}}
+        </header>
+
+        {{> "feature-image" eager=true}}
+    {{/if}}
+
+    <section class="gh-content gh-canvas">
+        {{content}}
+    </section>
+</article>
+{{/page}}

@@ -1,0 +1,6 @@
+/* Infinite loading active (set by modules/infinite-scroll.js): the nav becomes a
+   status row; the links come back if a fetch fails */
+.gh-pagination--infinite { grid-template-columns: 1fr; justify-items: center; }
+.gh-pagination--infinite a,
+.gh-pagination--infinite > span[aria-hidden] { display: none; }
+.gh-feed[aria-busy='true'] { cursor: progress; }

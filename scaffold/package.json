@@ -1,0 +1,72 @@
+{
+  "name": "__SLUG__",
+  "description": "__DESCRIPTION__",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": {
+    "name": "__AUTHOR__",
+    "email": "__EMAIL__"
+  },
+  "engines": {
+    "ghost": ">=6.0.0",
+    "node": ">=22"
+  },
+  "scripts": {
+    "build:css": "postcss assets/css/screen.css assets/css/post.css --dir assets/built",
+    "build:js": "esbuild assets/js/main.js assets/js/post.js --bundle --minify --target=es2020 --outdir=assets/built",
+    "build": "npm run build:css && npm run build:js",
+    "dev:css": "postcss assets/css/screen.css assets/css/post.css --dir assets/built --watch",
+    "dev:js": "esbuild assets/js/main.js assets/js/post.js --bundle --sourcemap --target=es2020 --outdir=assets/built --watch",
+    "dev": "concurrently -n css,js \"npm:dev:css\" \"npm:dev:js\"",
+    "test": "gscan .",
+    "check:i18n": "node scripts/check-i18n.mjs",
+    "check": "npm run build && npm test && npm run check:i18n && npm run check:a11y && npm run test:unit && npm run lint && npm run format:check",
+    "zip": "npm run check && node scripts/package-theme.mjs",
+    "starter:sync": "node \"${STARTER:-../ghost-theme-starter}/bin/sync.mjs\" .",
+    "check:a11y": "node scripts/check-a11y.mjs",
+    "test:unit": "vitest run",
+    "smoke": "node scripts/smoke-routes.mjs",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "concurrently": "^9.2.5",
+    "cssnano": "^7.0.6",
+    "esbuild": "^0.28.2",
+    "eslint": "^10.7.0",
+    "globals": "^17.7.0",
+    "gscan": "^6.6.1",
+    "handlebars": "^4.7.9",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "postcss-import": "^16.1.1",
+    "prettier": "^3.8.1",
+    "vitest": "^4.1.12"
+  },
+  "config": {
+    "posts_per_page": 12,
+    "card_assets": true,
+    "image_sizes": {
+      "xxs": { "width": 30 },
+      "s": {
+        "width": 320
+      },
+      "m": {
+        "width": 640
+      },
+      "l": {
+        "width": 1024
+      },
+      "xl": {
+        "width": 1920
+      }
+    },
+    "custom": {}
+  },
+  "keywords": [
+    "ghost-theme",
+    "ghost"
+  ]
+}

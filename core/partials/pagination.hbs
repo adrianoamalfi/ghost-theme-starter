@@ -1,0 +1,12 @@
+{{#match pagination.pages ">" 1}}
+<nav class="gh-pagination gh-wrap" aria-label="{{t "Pagination"}}"
+     data-loading="{{t "Loading…"}}" data-error="{{t "Couldn’t load more posts"}}">
+    {{#if pagination.prev}}
+        <a class="gh-button gh-button--ghost" href="{{page_url pagination.prev}}" rel="prev">{{t "Newer posts"}}</a>
+    {{else}}<span aria-hidden="true"></span>{{/if}}
+    <span class="gh-pagination-label" aria-live="polite">{{t "Page {page} of {pages}" page=pagination.page pages=pagination.pages}}</span>
+    {{#if pagination.next}}
+        <a class="gh-button gh-button--ghost" href="{{page_url pagination.next}}" rel="next">{{t "Older posts"}}</a>
+    {{else}}<span aria-hidden="true"></span>{{/if}}
+</nav>
+{{/match}}

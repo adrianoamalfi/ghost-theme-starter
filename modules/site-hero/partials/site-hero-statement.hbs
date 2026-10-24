@@ -1,0 +1,20 @@
+<section class="gh-sh gh-sh--statement">
+    <div class="gh-wrap">
+        <div class="gh-tile gh-sh-s{{#if @site.cover_image}} has-cover{{/if}}">
+            <div class="gh-sh-s-text">
+                <p class="gh-sh-hello">{{#if @custom.hero_eyebrow}}{{@custom.hero_eyebrow}}{{else}}{{@site.title}}{{/if}}</p>
+                <h1 class="gh-sh-title gh-sh-s-statement">{{#if @custom.personal_hero_headline}}{{@custom.personal_hero_headline}}{{else}}{{#if @site.description}}{{@site.description}}{{else}}{{@site.title}}{{/if}}{{/if}}</h1>
+                {{#if @custom.personal_hero_text}}<p class="gh-sh-s-lede">{{@custom.personal_hero_text}}</p>{{/if}}
+                <div class="gh-sh-s-foot">
+                    {{#get "tags" limit="4" include="count.posts" order="count.posts desc"}}
+                        <nav class="gh-sh-s-tags" aria-label="{{t "Topics"}}">
+                            {{#foreach tags}}{{#if count.posts}}<a href="{{url}}">{{name}}</a>{{/if}}{{/foreach}}
+                        </nav>
+                    {{/get}}
+                    {{> "subscribe-button"}}
+                </div>
+            </div>
+            {{#if @site.cover_image}}<figure class="gh-sh-s-photo">{{> "site-hero-cover"}}</figure>{{/if}}
+        </div>
+    </div>
+</section>

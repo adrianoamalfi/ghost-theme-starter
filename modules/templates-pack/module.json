@@ -1,0 +1,11 @@
+{
+  "name": "templates-pack",
+  "description": "Seven custom templates: Archive, Essay, Landing, Membership, Newsletter, Note (from Spectra and Astrix, which agree) and Portfolio (Astrix). Assign them in Ghost Admin (Essay and Note on posts, the rest on pages).",
+  "postCss": [
+    "modules/templates-pack.css"
+  ],
+  "postJs": {
+    "import": "import { initArchive } from './modules/archive.js';",
+    "init": "initArchive();"
+  }
+}

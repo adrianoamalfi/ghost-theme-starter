@@ -1,0 +1,45 @@
+/*
+ * Spectra skin: colour is generated, not chosen.
+ * Every surface, ink and tint is derived in OKLCH from ONE input: the accent
+ * set in Ghost Admin (default.hbs publishes it as --accent). Change the
+ * accent and the site recolours coherently in light and dark.
+ * `h` in the relative colours below is the accent's own hue.
+ */
+:root {
+    /* Fallback when no accent is configured in Ghost */
+    --accent: oklch(0.55 0.22 295);
+
+    --color-bg: light-dark(oklch(from var(--accent) 0.985 0.008 h), oklch(from var(--accent) 0.165 0.022 h));
+    --color-surface: light-dark(oklch(from var(--accent) 0.958 0.022 h), oklch(from var(--accent) 0.225 0.03 h));
+    --color-text: light-dark(oklch(from var(--accent) 0.2 0.035 h), oklch(from var(--accent) 0.95 0.012 h));
+    --color-muted: light-dark(oklch(from var(--accent) 0.46 0.035 h), oklch(from var(--accent) 0.76 0.03 h));
+    --color-border: light-dark(oklch(from var(--accent) 0.9 0.025 h), oklch(from var(--accent) 0.32 0.035 h));
+
+    /* Accent as text/line: pushed toward legibility on either scheme */
+    --accent-ink: light-dark(oklch(from var(--accent) min(l, 0.5) c h), oklch(from var(--accent) max(l, 0.78) c h));
+    --accent-soft: light-dark(oklch(from var(--accent) 0.94 0.04 h), oklch(from var(--accent) 0.26 0.05 h));
+
+    /* Solid fill: mid-lightness accents are nudged out of the band where neither white nor black
+       ink reaches AA (darker -> white ink, lighter -> black ink). Hue and chroma are kept. */
+    --accent-fill: oklch(from var(--accent) calc(clamp(0, calc((0.6 - l) * 1000), 1) * min(l, 0.5) + (1 - clamp(0, calc((0.6 - l) * 1000), 1)) * max(l, 0.72)) c h);
+    --on-accent: oklch(from var(--accent-fill) clamp(0, calc((0.6 - l) * 1000), 1) 0 h);
+
+    /* Tiles: one hue (the accent), a soft tint of it */
+    --tile-tint: light-dark(oklch(from var(--accent) 0.95 0.04 h), oklch(from var(--accent) 0.22 0.045 h));
+
+    /* Feed tiles (feed-styles module): three depths of the one accent, never a new hue */
+    --feed-tint-2: light-dark(oklch(from var(--accent) 0.97 0.015 h), oklch(from var(--accent) 0.21 0.015 h));
+    --feed-tint-3: light-dark(oklch(from var(--accent) 0.91 0.065 h), oklch(from var(--accent) 0.29 0.065 h));
+
+    /* Type: Bricolage Grotesque for display, Instrument Sans for UI and prose */
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    --font-display: 'Bricolage Grotesque', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-heading: var(--gh-font-heading, var(--font-display));
+
+    /* Shape: large tiles, 1rem media, pill controls */
+    --radius: .75rem;
+    --radius-lg: 1rem;
+    --radius-tile: clamp(1.25rem, 2.4vw, 1.75rem);
+    --gap: clamp(.625rem, 1.4vw, 1rem);
+    --measure: 42rem;
+}

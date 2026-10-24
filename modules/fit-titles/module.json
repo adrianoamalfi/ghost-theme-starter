@@ -1,0 +1,5 @@
+{
+  "name": "fit-titles",
+  "description": "Shrinks a display title just enough when one long word would overflow its container.",
+  "js": { "import": "import { initFitTitles } from './modules/fit-titles.js';", "init": "initFitTitles();" }
+}

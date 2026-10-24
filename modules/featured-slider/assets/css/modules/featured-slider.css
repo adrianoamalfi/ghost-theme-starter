@@ -1,0 +1,8 @@
+.gh-fs { margin-top: var(--space-6); }
+.gh-fs-track {
+    display: grid; grid-auto-flow: column; grid-auto-columns: min(82%, 21rem); gap: var(--gap); padding-bottom: var(--space-2);
+    overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: thin;
+}
+.gh-fs-track > * { scroll-snap-align: start; min-height: 18rem; }
+.gh-fs-track:focus-visible { outline-offset: 4px; border-radius: var(--radius-tile); }
+@media print { .gh-fs { display: none; } }

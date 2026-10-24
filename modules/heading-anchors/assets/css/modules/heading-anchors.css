@@ -1,0 +1,10 @@
+.gh-heading-anchor {
+    display: inline-flex; align-items: center; margin-left: var(--space-2); vertical-align: middle;
+    color: var(--accent-ink); opacity: 0; transition: opacity .15s var(--ease);
+}
+.gh-content :is(h2, h3):hover .gh-heading-anchor,
+.gh-heading-anchor:focus-visible { opacity: 1; }
+@media (hover: none) { .gh-heading-anchor { opacity: .5; } }
+.gh-heading-anchor svg { width: .7em; height: .7em; }
+.gh-heading-anchor.is-copied { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .gh-heading-anchor { transition: none; } }

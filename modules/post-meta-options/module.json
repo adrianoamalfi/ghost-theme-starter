@@ -1,0 +1,28 @@
+{
+  "name": "post-meta-options",
+  "description": "Author (name and photo / name only / hidden) and reading-time options for post and card meta; replaces the core meta row via the meta-layout slot.",
+  "css": [
+    "modules/post-meta-options.css"
+  ],
+  "replaces": {
+    "meta-layout": "post-meta-options"
+  },
+  "settings": {
+    "show_reading_time": {
+      "type": "boolean",
+      "default": true,
+      "group": "post"
+    },
+    "show_author_meta": {
+      "type": "select",
+      "options": [
+        "Name and photo",
+        "Name only",
+        "Hidden"
+      ],
+      "default": "Name and photo",
+      "group": "post",
+      "description": "Author on posts and cards"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{{!-- Swipeable row of featured posts under the hero. Toggle: show_featured_slider.
+      With the Featured hero the first featured post is already the hero card, so the row starts at the second. --}}
+{{#if @custom.show_featured_slider}}
+    {{#get "posts" filter="featured:true" include="tags,authors" limit=@config.posts_per_page as |featured|}}
+        {{#if featured}}
+            <section class="gh-wrap gh-fs" aria-labelledby="gh-fs-title">
+                <h2 class="gh-section-title" id="gh-fs-title">{{t "Featured"}}</h2>
+                <div class="gh-fs-track" role="group" aria-labelledby="gh-fs-title" tabindex="0">
+                    {{#if @custom.show_hero}}
+                        {{#match @custom.hero_style "Featured"}}
+                            {{#foreach featured from="2"}}{{> "feed-item"}}{{/foreach}}
+                        {{else}}
+                            {{#foreach featured}}{{> "feed-item"}}{{/foreach}}
+                        {{/match}}
+                    {{else}}
+                        {{#foreach featured}}{{> "feed-item"}}{{/foreach}}
+                    {{/if}}
+                </div>
+            </section>
+        {{/if}}
+    {{/get}}
+{{/if}}

@@ -1,0 +1,30 @@
+{
+  "name": "photo-templates",
+  "description": "Templates for a photographer's site: Series (tags as cover tiles), Photo (one large uncropped photograph, thumbnail navigation, print request, lightbox), About (portrait beside text) and Contact.",
+  "postCss": [
+    "modules/photo-templates.css"
+  ],
+  "postJs": {
+    "import": "import { initPhotoNav } from './modules/photo-nav.js';",
+    "init": "initPhotoNav();"
+  },
+  "settings": {
+    "contact_email": {
+      "type": "text",
+      "default": "",
+      "description": "Email for print requests and the Contact page (leave empty to hide the buttons)"
+    },
+    "rail_info": {
+      "type": "text",
+      "default": "",
+      "description": "Studio details in the left rail: address, city, VAT number (header Sidebar)"
+    }
+  },
+  "slots": {
+    "header-rail-foot": "photo-rail",
+    "home-before": "series-strip"
+  },
+  "css": [
+    "modules/photo-series-strip.css"
+  ]
+}

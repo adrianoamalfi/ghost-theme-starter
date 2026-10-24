@@ -1,0 +1,31 @@
+/* @font-face lives in partials/head-extra.hbs so its url() goes through the asset
+   helper and matches the preload (one download, version-hashed). */
+
+h1, h2, h3, h4 { font-weight: 600; line-height: 1.05; letter-spacing: -.02em; }
+.gh-content { font-size: 1.1875rem; }
+
+/* Interactive controls are pills */
+.gh-button, .gh-icon-button, .gh-chip, .gh-members-form input { border-radius: 999px; }
+.gh-button { padding: .65rem 1.25rem; font-weight: 600; }
+
+/* The secondary accent (Design setting) highlights selected text; falls back to the accent */
+::selection { background: color-mix(in srgb, var(--accent-2, var(--accent)) 45%, transparent); }
+
+/* Header: a quiet pill row rather than a bar */
+.gh-header { border-bottom-color: transparent; }
+
+/* Header: a floating pill, solid with a hairline; stays put across page transitions (header-styles module) */
+:root { --header-h: 4.75rem; }
+.gh-hdr { top: var(--space-3); width: min(100% - 2 * var(--gutter), var(--wrap)); margin: var(--space-3) auto 0; border: 1px solid var(--color-border); border-radius: 1.75rem; background: color-mix(in oklab, var(--color-bg) 94%, transparent); backdrop-filter: none; }
+.gh-hdr-inner { display: flex; flex-wrap: wrap; width: 100%; gap: var(--space-2) var(--space-4); padding: var(--space-2) var(--space-3) var(--space-2) var(--space-4); min-height: 0; }
+.gh-hdr-nav { flex: 1 1 auto; justify-self: auto; }
+.gh-hdr-actions { margin-left: auto; }
+.gh-hdr-nav a { font-size: .875rem; }
+.gh-hdr-nav .nav-current a, .gh-hdr-nav .nav-current a:hover { background: var(--color-text); color: var(--color-bg); }
+.gh-hdr--stacked .gh-hdr-inner { flex-direction: column; text-align: center; gap: var(--space-2); padding-block: var(--space-3); }
+.gh-hdr--stacked .gh-hdr-nav { flex: none; }
+.gh-hdr--stacked .gh-hdr-actions { margin-left: 0; }
+@media (max-width: 47.99rem) {
+    .gh-hdr-inner, .gh-hdr--stacked .gh-hdr-inner { flex-direction: row; text-align: left; padding: var(--space-2) var(--space-3) var(--space-2) var(--space-4); }
+    .gh-hdr--stacked .gh-hdr-actions { margin-left: auto; }
+}

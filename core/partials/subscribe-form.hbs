@@ -1,0 +1,16 @@
+{{#if @site.members_enabled}}{{#unless @member}}
+<section class="gh-subscribe gh-wrap">
+    <h2 class="gh-subscribe-title">{{#> subscribe-headline}}{{t "Get the best posts, straight to your inbox"}}{{/subscribe-headline}}</h2>
+    <p class="gh-subscribe-text">{{#> subscribe-text}}{{t "No spam. Unsubscribe at any time."}}{{/subscribe-text}}</p>
+    <form class="gh-members-form" data-members-form="subscribe">
+        <input type="email" name="email" data-members-email required autocomplete="email" inputmode="email"
+               placeholder="{{t "Your email address"}}" aria-label="{{t "Your email address"}}">
+        <button class="gh-button" type="submit">
+            <span class="gh-form-cta">{{t "Subscribe"}}</span>
+            <span class="gh-form-loading">{{t "Sending…"}}</span>
+        </button>
+        <p class="gh-form-feedback gh-form-feedback--success" role="status">{{t "Great! Check your inbox and click the link to confirm."}}</p>
+        <p class="gh-form-feedback gh-form-feedback--error" data-members-error role="alert"></p>
+    </form>
+</section>
+{{/unless}}{{/if}}

@@ -1,0 +1,13 @@
+<section class="gh-sh gh-sh--masthead">
+    <div class="gh-wrap">
+        <div class="gh-tile gh-sh-m">
+            {{#if @custom.hero_eyebrow}}<p class="gh-sh-hello">{{@custom.hero_eyebrow}}</p>{{/if}}
+            <h1 class="gh-sh-title gh-sh-m-title">{{@site.title}}</h1>
+            {{#if @site.cover_image}}<figure class="gh-sh-m-cover">{{> "site-hero-cover"}}</figure>{{/if}}
+            <div class="gh-sh-m-cols">
+                {{#if @site.description}}<p class="gh-sh-m-desc">{{@site.description}}</p>{{/if}}
+                {{> "subscribe-button"}}
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,10 @@
+{
+  "name": "reading-progress",
+  "description": "Thin reading-progress bar at the top of the viewport on posts.",
+  "postCss": ["modules/reading-progress.css"],
+  "postJs": { "import": "import { initProgress } from './modules/progress.js';", "init": "initProgress();" },
+  "slots": { "post-after-content": "reading-progress" },
+  "settings": {
+    "show_reading_progress": { "type": "boolean", "default": true, "description": "Show a reading progress bar on posts." }
+  }
+}

@@ -1,0 +1,7 @@
+{{!-- Homepage hero dispatcher. Settings: show_hero, hero_style (Featured, Masthead, Statement, Index). --}}
+{{#if @custom.show_hero}}
+    {{#match @custom.hero_style "Masthead"}}{{> "site-hero-masthead"}}{{/match}}
+    {{#match @custom.hero_style "Featured"}}{{> "site-hero-featured"}}{{/match}}
+    {{#match @custom.hero_style "Statement"}}{{> "site-hero-statement"}}{{/match}}
+    {{#match @custom.hero_style "Index"}}{{> "site-hero-index"}}{{/match}}
+{{/if}}

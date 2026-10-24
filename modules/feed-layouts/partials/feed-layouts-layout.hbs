@@ -1,0 +1,7 @@
+{{!-- Post feed in three layouts from Astrix. Setting: feed_layout (Bold grid, Mosaic, List). Replaces the core feed via the
+      feed-layout slot; an alternative to feed-styles (install one). Skip params are handled by the core feed-loop. --}}
+{{#if posts}}
+    <div class="gh-feed gh-feed--{{#match @custom.feed_layout "Mosaic"}}mosaic{{else match @custom.feed_layout "List"}}list{{else}}bold-grid{{/match}}">{{> "feed-loop"}}</div>
+{{else}}
+    {{> "empty-state"}}
+{{/if}}

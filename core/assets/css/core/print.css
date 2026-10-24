@@ -1,0 +1,5 @@
+@media print {
+    .gh-header, .gh-footer, .gh-back-to-top, .gh-subscribe, .gh-pagination { display: none !important; }
+    body { background: #fff; color: #000; }
+    .gh-content a::after { content: ' (' attr(href) ')'; font-size: .8em; }
+}

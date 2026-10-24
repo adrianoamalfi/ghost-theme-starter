@@ -1,0 +1,8 @@
+{{!-- Short follow list: X, Facebook (from Ghost social accounts) and RSS. --}}
+<ul class="gh-sf-links">
+    {{#with @site}}
+        {{#if twitter}}<li><a href="{{social_url type="twitter"}}" target="_blank" rel="noopener">{{> "icons/social/x"}}<span>X</span></a></li>{{/if}}
+        {{#if facebook}}<li><a href="{{social_url type="facebook"}}" target="_blank" rel="noopener">{{> "icons/social/facebook"}}<span>Facebook</span></a></li>{{/if}}
+    {{/with}}
+    <li><a href="{{@site.url}}/rss/">{{> "icons/social/rss"}}<span>RSS</span></a></li>
+</ul>

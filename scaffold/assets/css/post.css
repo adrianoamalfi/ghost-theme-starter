@@ -1,0 +1,4 @@
+/* Loaded only on posts and pages (see default.hbs). Module imports for
+   article-only components (toc, share…) are added at the marker. */
+@layer components;
+/* @starter:components */

@@ -1,0 +1,62 @@
+/* Astrix: @font-face lives in partials/head-extra.hbs (version-hashed asset URLs, one download). */
+
+/* ---- Type: Astryx is app-sized (14px base, 12px small); the theme adds its own UI and prose baselines ---- */
+body { font-size: clamp(1.0625rem, 1rem + .35vw, 1.1875rem); line-height: 1.7; }
+h1, h2, h3, h4 { font-weight: 700; letter-spacing: -.025em; line-height: 1.1; }
+.gh-content { font-size: clamp(1.125rem, 1.083rem + .21vw, 1.25rem); line-height: 1.6; }
+.gh-content h2 { font-size: var(--display-3); margin-top: 2.5rem; }
+.gh-content h3 { font-size: clamp(1.25rem, 1.1rem + .7vw, 1.625rem); margin-top: 2rem; }
+.gh-content blockquote { font-size: 1.15em; }
+.gh-content pre, .gh-content code { font-size: .75rem; }
+.gh-content code { font-size: .8em; }
+
+/* Section headings: display size with a fading accent rule */
+.gh-section-title {
+    display: flex; align-items: baseline; gap: var(--space-3);
+    margin-block: 2.5rem var(--space-5);
+    font-size: var(--display-3); letter-spacing: -.025em; line-height: 1.1;
+}
+.gh-section-title::after { content: ''; flex-grow: 1; height: 3px; border-radius: 999px; background: linear-gradient(90deg, color-mix(in oklab, var(--accent) 60%, var(--color-muted)), transparent); }
+
+/* ---- Controls ---- */
+.gh-button { border-radius: 999px; font-size: .875rem; padding: .375rem .75rem; }
+.gh-personal .gh-button, .gh-post-hero .gh-button, .gh-post-upgrade .gh-button { font-size: 1rem; padding: .55rem 1.25rem; }
+.gh-hdr-nav a, .gh-nav a { font-size: .875rem; }
+
+/* ---- Cards ---- */
+.gh-card-link:hover .gh-card-title { color: var(--accent-2-ink); }
+.gh-card-excerpt { font-size: .875rem; line-height: 1.55; max-width: 65ch; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.gh-card-meta, .gh-card-meta .gh-meta, .gh-meta { font-size: .75rem; }
+.gh-card-media, .gh-feature-image img { outline: 1px solid color-mix(in oklab, var(--color-text) 10%, transparent); outline-offset: -1px; }
+
+/* ---- Hero ---- */
+.gh-personal-inner { padding-block: 3rem; }
+.gh-personal-title, .gh-post-hero-title { line-height: 1.02; }
+
+/* ---- Featured slider: fixed-width cards with a fading right edge ---- */
+.gh-fs-track { grid-auto-columns: min(420px, 82vw); gap: 1.25rem; padding-inline-end: 4.5rem; -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 4.5rem), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 4.5rem), transparent); }
+.gh-fs-track > * { min-height: 0; }
+.gh-fs { margin-top: 0; margin-bottom: var(--space-7); }
+
+/* ---- Article: centred header, display title, table of contents as a rail ---- */
+.gh-article-header { width: min(100% - 2 * var(--gutter), var(--wrap)); justify-items: center; text-align: center; }
+.gh-article-title { max-width: none; font-size: var(--display-1); line-height: 1.02; letter-spacing: -.025em; text-wrap: balance; }
+.gh-article-excerpt { max-width: var(--measure); font-size: 1.375rem; }
+.gh-article-header .gh-breadcrumbs { justify-content: center; }
+.gh-breadcrumbs, .gh-chip { font-size: .75rem; }
+.gh-article-header .gh-meta { justify-content: center; font-size: .75rem; }
+.gh-article-header .gh-meta-author .gh-avatar { width: 2.25rem; height: 2.25rem; }
+.gh-post-nav-link { padding: var(--space-5) var(--space-5); }
+.gh-post-nav-title { font-size: 1.5rem; }
+@media (min-width: 80rem) {
+    .gh-article-aside { position: absolute; inset-block: 0; left: var(--gutter); width: 15rem; margin: 0; }
+    /* sticky again below 112rem, where the toc module would otherwise make it static */
+    .gh-toc-details { position: sticky; top: calc(var(--header-h) + var(--space-5)); max-height: calc(100vh - var(--header-h) - 2 * var(--space-5)); }
+}
+
+/* ---- Footer and subscribe band: a surface ground, the subscribe call as a dark rounded panel ---- */
+.gh-footer { background: var(--color-surface); border-top: 0; margin-top: var(--space-8); }
+.gh-subscribe { color-scheme: dark; background: var(--surface-dark); color: var(--color-text); border-radius: var(--radius-tile); padding: clamp(2rem, 6vw, 4rem); text-align: center; justify-items: center; width: min(100% - 2 * var(--gutter), var(--wrap)); margin-top: var(--space-7); }
+.gh-subscribe-title { font-size: var(--display-2); max-width: 22ch; }
+.gh-subscribe-text { font-size: 1.125rem; max-width: 40rem; }
+.gh-members-form { margin-inline: auto; }

@@ -1,0 +1,6 @@
+{
+  "name": "infinite-scroll",
+  "description": "Loads the next page of the feed when the pagination nears the viewport; classic prev/next stays as the fallback (no JS, Save-Data, errors).",
+  "css": ["modules/infinite-scroll.css"],
+  "js": { "import": "import { initInfiniteScroll } from './modules/infinite-scroll.js';", "init": "initInfiniteScroll();" }
+}

@@ -1,0 +1,2 @@
+{{!-- Portal sign-up button; renders only when members are on and the reader is signed out. --}}
+{{#if @site.members_enabled}}{{#unless @member}}<a class="gh-button" href="#/portal/signup" data-portal="signup">{{t "Subscribe"}}</a>{{/unless}}{{/if}}

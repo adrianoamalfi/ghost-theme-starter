@@ -1,0 +1,14 @@
+{
+  "name": "comments",
+  "description": "Ghost native comments, lazy-mounted when the reader scrolls near.",
+  "postCss": [
+    "modules/comments.css"
+  ],
+  "postJs": {
+    "import": "import { initComments } from './modules/comments.js';",
+    "init": "initComments();"
+  },
+  "slots": {
+    "post-comments": "comments"
+  }
+}

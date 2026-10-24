@@ -1,0 +1,22 @@
+{
+  "name": "hero-statement",
+  "description": "Large headline + intro on the homepage (fills the home-before slot).",
+  "css": [
+    "modules/hero-statement.css"
+  ],
+  "settings": {
+    "hero_headline": {
+      "type": "text",
+      "group": "homepage",
+      "description": "Homepage headline"
+    },
+    "hero_text": {
+      "type": "text",
+      "group": "homepage",
+      "description": "Homepage intro text"
+    }
+  },
+  "slots": {
+    "home-before": "hero-statement"
+  }
+}

@@ -1,0 +1,8 @@
+.gh-meta-authors { display: inline-flex; flex-wrap: wrap; align-items: center; gap: var(--space-1) var(--space-3); }
+.gh-meta-author { display: inline-flex; align-items: center; gap: .5rem; color: inherit; font-weight: 500; text-decoration: underline transparent 1px; text-underline-offset: .25em; transition: text-decoration-color .2s var(--ease); }
+a.gh-meta-author:hover { text-decoration-color: currentColor; }
+/* Author photo: a circle with a hairline ring that follows the ink colour */
+.gh-meta-author .gh-avatar { flex: none; width: 1.5rem; height: 1.5rem; background: var(--color-surface); outline: 1px solid color-mix(in oklab, currentColor 25%, transparent); outline-offset: -1px; }
+.gh-article-header .gh-meta-author .gh-avatar { width: 2.5rem; height: 2.5rem; }
+.gh-article-header .gh-meta { font-size: .9375rem; gap: var(--space-2) var(--space-5); }
+@media (prefers-reduced-motion: reduce) { .gh-meta-author { transition: none; } }

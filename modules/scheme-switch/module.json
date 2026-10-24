@@ -1,0 +1,7 @@
+{
+  "name": "scheme-switch",
+  "description": "Three-state colour control (System / Light / Dark) in the header; replaces the core one-button toggle via the header-scheme slot.",
+  "css": ["modules/scheme-switch.css"],
+  "js": { "import": "import { initSchemeSwitch } from './modules/scheme-switch.js';", "init": "initSchemeSwitch();" },
+  "replaces": { "header-scheme": "scheme-switch" }
+}

@@ -1,0 +1,19 @@
+{{!-- The photographer's series on the home page: tags that have a cover image, as a row of tiles. Renders nothing without covers. --}}
+{{#get "tags" filter="feature_image:-null" limit="6" order="count.posts desc" include="count.posts" as |series|}}
+    {{#if series}}
+        <section class="gh-wrap gh-series-strip" aria-labelledby="gh-series-strip-title">
+            <h2 class="gh-section-title" id="gh-series-strip-title">{{t "Series"}}</h2>
+            <ul class="gh-series-strip-list">
+                {{#foreach series}}
+                    <li>
+                        <a class="gh-series-tile" href="{{url}}">
+                            <img src="{{img_url feature_image size="m" format="webp"}}" width="640" height="800" alt="" loading="lazy" decoding="async">
+                            <span class="gh-series-tile-name">{{name}}</span>
+                            <span class="gh-series-tile-count">{{count.posts}}</span>
+                        </a>
+                    </li>
+                {{/foreach}}
+            </ul>
+        </section>
+    {{/if}}
+{{/get}}

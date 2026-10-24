@@ -1,0 +1,28 @@
+{{!-- Swipeable row of featured posts under the hero (post-hero variant). Toggle: show_featured_slider.
+      The hero shows the first featured post, so the row starts at the second; with the Personal hero
+      nothing is consumed and the row shows them all. --}}
+{{#if @custom.show_featured_slider}}
+{{#match @custom.post_hero_style "Slideshow"}}{{else}}
+    {{#get "posts" filter="featured:true" include="tags,authors" limit="7" as |featured|}}
+        {{#if featured}}
+            {{#match @custom.post_hero_style "Personal"}}
+                <section class="gh-wrap gh-fs" aria-labelledby="gh-fs-title">
+                    <h2 class="gh-section-title" id="gh-fs-title">{{t "Featured"}}</h2>
+                    <div class="gh-fs-track" role="group" aria-labelledby="gh-fs-title" tabindex="0">
+                        {{#foreach featured}}{{> "feed-item" force_lazy=true}}{{/foreach}}
+                    </div>
+                </section>
+            {{else}}
+                {{#if featured.[1]}}
+                    <section class="gh-wrap gh-fs" aria-labelledby="gh-fs-title">
+                        <h2 class="gh-section-title" id="gh-fs-title">{{t "Featured"}}</h2>
+                        <div class="gh-fs-track" role="group" aria-labelledby="gh-fs-title" tabindex="0">
+                            {{#foreach featured from="2"}}{{> "feed-item" force_lazy=true}}{{/foreach}}
+                        </div>
+                    </section>
+                {{/if}}
+            {{/match}}
+        {{/if}}
+    {{/get}}
+{{/match}}
+{{/if}}

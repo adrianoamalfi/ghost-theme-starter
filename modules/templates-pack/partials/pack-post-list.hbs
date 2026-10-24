@@ -1,0 +1,13 @@
+{{!-- Ruled list of posts: date | title | tag. Context: a list of posts in `posts`; set grouped=true for the by-year JS. --}}
+<ol class="gh-pack-list"{{#if grouped}} id="gh-archive-posts"{{/if}}>
+    {{#foreach posts}}
+        <li class="gh-pack-item" data-year="{{date format="YYYY"}}">
+            <a class="gh-pack-link" href="{{url}}">
+                <time datetime="{{date format="YYYY-MM-DD"}}" data-in-year="{{date format="D MMM"}}">{{date format="D MMM YYYY"}}</time>
+                <i aria-hidden="true"></i>
+                <span class="gh-pack-title">{{title}}</span>
+                {{#primary_tag}}<span class="gh-pack-tag">{{name}}</span>{{/primary_tag}}
+            </a>
+        </li>
+    {{/foreach}}
+</ol>

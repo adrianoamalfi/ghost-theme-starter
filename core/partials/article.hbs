@@ -1,0 +1,45 @@
+{{!-- A full article. Context: a post. Params:
+        kind     optional variant name, becomes the modifier class gh-article--<kind>
+        eyebrow  optional small label above the title (pass it already translated, via the t helper as a subexpression)
+        no_aside true to omit the post-aside slot (e.g. no table of contents) --}}
+<article class="gh-article {{post_class}}{{#if kind}} gh-article--{{kind}}{{/if}}">
+
+    <header class="gh-article-header">
+        {{> "breadcrumbs"}}
+
+        {{#if eyebrow}}
+            <p class="gh-eyebrow">{{eyebrow}}</p>
+        {{else}}
+            {{#primary_tag}}<a class="gh-chip" href="{{url}}">{{name}}</a>{{/primary_tag}}
+        {{/if}}
+
+        <h1 class="gh-article-title">{{title}}</h1>
+
+        {{#if custom_excerpt}}<p class="gh-article-excerpt">{{custom_excerpt}}</p>{{/if}}
+
+        {{> "post-meta"}}
+    </header>
+
+    {{> "feature-image" eager=true}}
+
+    <div class="gh-article-layout">
+        {{#unless no_aside}}<aside class="gh-article-aside">{{> "post-aside"}}</aside>{{/unless}}
+
+        <section class="gh-content gh-canvas" id="gh-content">
+            {{content}}
+        </section>
+    </div>
+
+    {{#if tags.[1]}}
+        <footer class="gh-article-footer">
+            {{#foreach tags}}<a class="gh-chip" href="{{url}}">{{name}}</a>{{/foreach}}
+        </footer>
+    {{/if}}
+
+    {{> "post-after-content"}}
+
+    {{> "post-comments"}}
+
+</article>
+
+{{> "post-nav"}}

@@ -1,0 +1,15 @@
+{
+  "name": "share",
+  "description": "Share row under the article: X, Facebook, LinkedIn, copy link, native share sheet, optional support link.",
+  "postCss": [
+    "modules/share.css"
+  ],
+  "postJs": {
+    "import": "import { initShare } from './modules/share.js';",
+    "init": "initShare();"
+  },
+  "slots": {
+    "post-after-content": "share"
+  },
+  "order": 20
+}

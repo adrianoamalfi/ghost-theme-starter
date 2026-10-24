@@ -1,0 +1,19 @@
+{{!< default}}
+
+{{!-- Page template "Newsletter": the page content, a subscribe form, then past editions.
+      Editions are posts carrying the internal tag #newsletter (tag:hash-newsletter), so they
+      never appear as a public tag. --}}
+{{#post}}
+    {{> "pack-page" eyebrow=(t "Newsletter")}}
+{{/post}}
+
+{{> "subscribe-form"}}
+
+{{#get "posts" filter="tag:hash-newsletter" limit="24" order="published_at desc" as |editions|}}
+    {{#if editions}}
+        <section class="gh-wrap gh-pack-section" aria-labelledby="past-editions">
+            <h2 class="gh-pack-section-title" id="past-editions">{{t "Past editions"}}</h2>
+            {{> "pack-post-list" posts=editions}}
+        </section>
+    {{/if}}
+{{/get}}

@@ -1,0 +1,10 @@
+{{!-- Site intro, shown by the hero styles when nothing is featured. --}}
+<section class="gh-post-hero gh-post-hero--poster gh-post-hero--no-image gh-post-hero--intro">
+    <div class="gh-post-hero-content gh-wrap">
+        <div class="gh-post-hero-inner">
+            <h1 class="gh-post-hero-title">{{@site.title}}</h1>
+            {{#if @site.description}}<p class="gh-post-hero-excerpt">{{@site.description}}</p>{{/if}}
+            {{> "subscribe-button"}}
+        </div>
+    </div>
+</section>

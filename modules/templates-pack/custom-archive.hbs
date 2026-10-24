@@ -1,0 +1,31 @@
+{{!< default}}
+
+{{!-- Page template "Archive": the page content, every public topic with its post count,
+      then the full post index (grouped by year with JS). --}}
+{{#post}}
+    {{> "pack-page"}}
+{{/post}}
+
+{{!-- Bounded limits keep the page weight predictable (gscan rejects limit="all") --}}
+{{#get "tags" limit="100" include="count.posts" order="count.posts desc" as |topics|}}
+    {{#if topics}}
+        <section class="gh-wrap gh-pack-section" aria-labelledby="archive-topics">
+            <h2 class="gh-pack-section-title" id="archive-topics">{{t "Browse by topic"}}</h2>
+            <div class="gh-topic-list">
+                {{#foreach topics}}{{#if count.posts}}<a class="gh-topic" href="{{url}}">{{name}}<span class="gh-topic-count">{{count.posts}}</span></a>{{/if}}{{/foreach}}
+            </div>
+        </section>
+    {{/if}}
+{{/get}}
+
+{{#get "posts" limit="100" order="published_at desc" as |entries|}}
+    {{#if entries}}
+        <section class="gh-wrap gh-pack-section" aria-labelledby="archive-all">
+            <h2 class="gh-pack-section-title" id="archive-all">{{t "All posts"}}</h2>
+            {{#match pagination.total ">" 100}}
+                <p class="gh-pack-note">{{t "Showing the 100 most recent posts. Browse by topic above for older ones."}}</p>
+            {{/match}}
+            {{> "pack-post-list" posts=entries grouped=true}}
+        </section>
+    {{/if}}
+{{/get}}

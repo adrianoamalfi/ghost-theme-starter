@@ -1,0 +1,49 @@
+{{!-- Homepage hero: the latest featured post (or the author, with style Personal). Style: @custom.post_hero_style
+      (Poster = full-bleed, always-dark scrimmed image; Editorial = text above
+      a wide image; Split = text | image; Cover = the photograph with a small caption; Slideshow = up to five
+      featured photographs fading into each other). With no featured post it shows a site intro. --}}
+{{#match @custom.post_hero_style "Personal"}}
+    {{> "personal-hero"}}
+{{else match @custom.post_hero_style "Slideshow"}}
+    {{> "hero-cover" slides="5"}}
+{{else match @custom.post_hero_style "Cover"}}
+    {{> "hero-cover" slides="1"}}
+{{else}}
+{{#get "posts" filter="featured:true" limit="1" include="tags,authors" as |hero|}}
+{{#foreach hero}}
+<section class="gh-post-hero {{#match @custom.post_hero_style "Editorial"}}gh-post-hero--editorial{{else match @custom.post_hero_style "Split"}}gh-post-hero--split{{else}}gh-post-hero--poster{{/match}}{{#unless feature_image}} gh-post-hero--no-image{{/unless}}">
+    {{#if feature_image}}
+        <div class="gh-post-hero-media">
+            <img
+                srcset="{{img_url feature_image size="m" format="webp"}} 640w,
+                        {{img_url feature_image size="l" format="webp"}} 1024w,
+                        {{img_url feature_image size="xl" format="webp"}} 1920w"
+                sizes="(max-width: 900px) 100vw, 1600px"
+                src="{{img_url feature_image size="xl" format="webp"}}"
+                width="1920" height="1080"
+                alt="{{feature_image_alt}}"
+                decoding="async" fetchpriority="high"
+                style="view-transition-name: gh-post-{{id}}"
+            >
+        </div>
+    {{/if}}
+
+    <div class="gh-post-hero-content gh-wrap">
+        <div class="gh-post-hero-inner">
+            {{#primary_tag}}<a class="gh-post-hero-tag" href="{{url}}">{{name}}</a>{{/primary_tag}}
+            <h1 class="gh-post-hero-title"><a href="{{url}}">{{title}}</a></h1>
+            <p class="gh-post-hero-excerpt">{{#if custom_excerpt}}{{custom_excerpt}}{{else}}{{excerpt words="36"}}{{/if}}</p>
+            <div class="gh-meta gh-post-hero-meta">
+                {{#primary_author}}<span>{{name}}</span><span class="gh-meta-sep" aria-hidden="true">·</span>{{/primary_author}}
+                <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
+                <span class="gh-meta-sep" aria-hidden="true">·</span>
+                <span>{{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>
+            </div>
+        </div>
+    </div>
+</section>
+{{/foreach}}
+{{else}}
+{{> "post-hero-intro"}}
+{{/get}}
+{{/match}}

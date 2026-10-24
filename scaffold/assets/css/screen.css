@@ -1,0 +1,22 @@
+/*
+ * __NAME__ — stylesheet entry.
+ *
+ * Layer order is load-bearing and defined by the starter: core provides
+ * structure in reset/base/layout/components/prose, the skin restyles in
+ * `skin`. koenig.css is deliberately UNLAYERED and last (see its header).
+ * This file is yours: add imports freely; sync never rewrites it.
+ */
+@layer reset, tokens, base, layout, components, prose, skin, utilities, print;
+
+@import 'core/reset.css' layer(reset);
+@import 'core/tokens.css' layer(tokens);
+@import 'skin/tokens.css' layer(tokens);
+@import 'core/base.css' layer(base);
+@import 'core/layout.css' layer(layout);
+@import 'core/components.css' layer(components);
+/* @starter:components */
+@import 'core/prose.css' layer(prose);
+@import 'skin/skin.css' layer(skin);
+@import 'core/utilities.css' layer(utilities);
+@import 'core/print.css' layer(print);
+@import 'core/koenig.css';

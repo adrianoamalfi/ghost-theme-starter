@@ -1,0 +1,10 @@
+{
+  "name": "subscribe-cta",
+  "description": "Subscribe band under the homepage feed with a custom headline and supporting line (cta_headline, cta_text). Delete the line from partials/home-after.hbs to drop the band.",
+  "slots": { "home-after": "subscribe-form" },
+  "replaces": { "subscribe-headline": "cta-headline", "subscribe-text": "cta-text" },
+  "settings": {
+    "cta_headline": { "type": "text", "default": "", "group": "homepage", "description": "Subscribe section: headline" },
+    "cta_text": { "type": "text", "default": "", "group": "homepage", "description": "Subscribe section: supporting line" }
+  }
+}

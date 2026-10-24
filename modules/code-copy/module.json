@@ -1,0 +1,7 @@
+{
+  "name": "code-copy",
+  "description": "Copy button and language badge on code blocks.",
+  "postCss": ["modules/code-copy.css"],
+  "postJs": { "import": "import { initCodeCopy } from './modules/code-copy.js';", "init": "initCodeCopy();" },
+  "slots": { "post-after-content": "code-copy-labels" }
+}

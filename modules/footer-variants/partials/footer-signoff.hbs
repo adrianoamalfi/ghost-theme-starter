@@ -1,0 +1,25 @@
+<footer class="gh-sf gh-sf--signoff">
+    <div class="gh-tile gh-sf-tile">
+        <div class="gh-sf-lead-row">
+            <p class="gh-sf-lead">{{#if @custom.footer_text}}{{@custom.footer_text}}{{else}}{{#if @site.description}}{{@site.description}}{{else}}{{@site.title}}{{/if}}{{/if}}</p>
+            <div class="gh-sf-lead-actions">
+                {{> "subscribe-button"}}
+                {{#if @site.donations_enabled}}<a class="gh-button gh-button--ghost" href="#/portal/support" data-portal="support">{{t "Support this site"}}</a>{{/if}}
+            </div>
+        </div>
+        <div class="gh-sf-cols">
+            <nav class="gh-sf-nav" aria-label="{{t "Footer"}}">
+                {{navigation type="secondary"}}
+            </nav>
+            <nav class="gh-sf-social" aria-label="{{t "Follow"}}">
+                {{> "footer-follow"}}
+            </nav>
+            <div class="gh-sf-base">
+                <p>&copy; {{date format="YYYY"}} {{@site.title}}</p>
+                <p><a href="https://ghost.org" target="_blank" rel="noopener">{{t "Published with Ghost"}}</a></p>
+            </div>
+        </div>
+        {{> "footer-extra"}}
+        {{recommendations limit="4"}}
+    </div>
+</footer>

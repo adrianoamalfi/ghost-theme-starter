@@ -1,0 +1,15 @@
+/* Series on the home page: a row of tall tiles, name and count over the cover */
+.gh-series-strip-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--gap, .75rem); grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr)); }
+.gh-series-tile { position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden; color: oklch(.98 .005 270); text-decoration: none; background: var(--surface-dark, #111); isolation: isolate; }
+.gh-series-tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease), opacity .4s var(--ease); }
+.gh-series-tile::after { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(to top, oklch(.12 .01 270 / .7), transparent 55%); }
+.gh-series-tile-name, .gh-series-tile-count { position: absolute; z-index: 2; left: var(--space-3); right: var(--space-3); }
+.gh-series-tile-name { bottom: var(--space-3); font-family: var(--font-heading); font-size: 1.35rem; line-height: 1.05; }
+.gh-series-tile-count { top: var(--space-3); right: auto; font-size: .75rem; opacity: .85; }
+.gh-series-tile:hover img, .gh-series-tile:focus-visible img { transform: scale(1.04); }
+.gh-series-tile:focus-visible { outline: 2px solid var(--accent-fill); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .gh-series-tile img { transition: none; } .gh-series-tile:hover img { transform: none; } }
+@media (max-width: 40rem) {
+    .gh-series-strip-list { grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 62%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: var(--space-2); margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); scroll-padding-inline: var(--gutter); scrollbar-width: none; }
+    .gh-series-strip-list > li { scroll-snap-align: start; }
+}

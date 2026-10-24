@@ -1,0 +1,14 @@
+/* Unlayered on purpose: Ghost injects its own unlayered card CSS, which would
+   always beat layered rules. Keep this file minimal: widths only. */
+.kg-width-wide { grid-column: wide-start / wide-end; }
+.kg-width-full { grid-column: full-start / full-end; }
+.kg-width-full img, .kg-width-wide img { width: 100%; }
+.kg-image-card img, .kg-gallery-image img { margin-inline: auto; }
+
+/* Koenig cards that Ghost paints with the raw accent and white text: use the AA-safe fill and its ink */
+.gh-content { --ghost-accent-color: var(--accent-fill); }
+.gh-content :is(.kg-btn-accent, .kg-callout-card-accent, a.kg-product-card-btn-accent, .kg-header-card.kg-style-light a.kg-header-card-button, .kg-header-card.kg-style-accent, .kg-signup-card.kg-style-accent) { color: var(--on-accent); }
+.gh-content :is(.kg-callout-card-accent, .kg-header-card.kg-style-accent, .kg-signup-card.kg-style-accent) :is(span, p, h2, h3, .kg-callout-text) { color: inherit; }
+.gh-content :is(.kg-bookmark-description, .kg-bookmark-author, .kg-bookmark-publisher) { color: var(--color-muted); opacity: 1; }
+.gh-content :is(.kg-header-card.kg-style-accent, .kg-signup-card.kg-style-accent) :is(.kg-header-card-heading, .kg-header-card-subheading, .kg-header-card-header, .kg-header-card-subheader, .kg-signup-card-heading, .kg-signup-card-subheading, .kg-signup-card-disclaimer, .kg-signup-card-success) { color: var(--on-accent) !important; } /* the editor stores a fixed white inline */
+.gh-content .kg-bookmark-card a.kg-bookmark-container { background: var(--color-bg); color: var(--color-text); }

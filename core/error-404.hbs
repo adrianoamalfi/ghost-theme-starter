@@ -1,0 +1,17 @@
+{{!< default}}
+
+<section class="gh-wrap gh-error">
+    <p class="gh-eyebrow">404</p>
+    <h1 class="gh-error-title">{{t "Page not found"}}</h1>
+    <p class="gh-error-text">{{t "The page you are looking for doesn’t exist or has moved."}}</p>
+    <a class="gh-button" href="{{@site.url}}">{{t "Back to home"}}</a>
+</section>
+
+{{#get "posts" limit="3"}}
+    {{#if posts}}
+        <section class="gh-wrap gh-feed-wrap" aria-labelledby="gh-404-latest">
+            <h2 class="gh-visually-hidden" id="gh-404-latest">{{t "Latest posts"}}</h2>
+            {{> "post-feed"}}
+        </section>
+    {{/if}}
+{{/get}}

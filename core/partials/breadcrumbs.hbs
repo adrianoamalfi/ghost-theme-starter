@@ -1,0 +1,49 @@
+<nav class="gh-breadcrumbs" aria-label="{{t "Breadcrumbs"}}" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="{{@site.url}}" itemprop="item"><span itemprop="name">{{t "Home"}}</span></a>
+        <meta itemprop="position" content="1">
+    </span>
+    {{#is "post"}}
+        {{#primary_tag}}
+            <span aria-hidden="true">/</span>
+            <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a href="{{url}}" itemprop="item"><span itemprop="name">{{name}}</span></a>
+                <meta itemprop="position" content="2">
+            </span>
+        {{/primary_tag}}
+        <span aria-hidden="true">/</span>
+        <span aria-current="page" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <span itemprop="item" itemscope itemtype="https://schema.org/WebPage" itemid="{{url absolute="true"}}">
+                <span itemprop="name">{{title}}</span>
+            </span>
+            <meta itemprop="position" content="{{#primary_tag}}3{{else}}2{{/primary_tag}}">
+        </span>
+    {{/is}}
+    {{#is "tag"}}
+        <span aria-hidden="true">/</span>
+        <span aria-current="page" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <span itemprop="item" itemscope itemtype="https://schema.org/WebPage" itemid="{{url absolute="true"}}">
+                <span itemprop="name">{{name}}</span>
+            </span>
+            <meta itemprop="position" content="2">
+        </span>
+    {{/is}}
+    {{#is "author"}}
+        <span aria-hidden="true">/</span>
+        <span aria-current="page" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <span itemprop="item" itemscope itemtype="https://schema.org/WebPage" itemid="{{url absolute="true"}}">
+                <span itemprop="name">{{name}}</span>
+            </span>
+            <meta itemprop="position" content="2">
+        </span>
+    {{/is}}
+    {{#is "page"}}
+        <span aria-hidden="true">/</span>
+        <span aria-current="page" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <span itemprop="item" itemscope itemtype="https://schema.org/WebPage" itemid="{{url absolute="true"}}">
+                <span itemprop="name">{{title}}</span>
+            </span>
+            <meta itemprop="position" content="2">
+        </span>
+    {{/is}}
+</nav>

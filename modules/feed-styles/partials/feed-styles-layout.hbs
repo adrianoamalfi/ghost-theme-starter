@@ -1,0 +1,7 @@
+{{!-- Post feed in three styles from Spectra. Setting: post_feed_style (Bento, Grid, List). Replaces the core feed via the feed-layout slot.
+      Skip params (skip_from, skip_featured, skip_id) are handled by the core feed-loop. --}}
+{{#if posts}}
+    <div class="gh-feed gh-feed--{{#if @custom.post_feed_style}}{{@custom.post_feed_style}}{{else}}Bento{{/if}}">{{> "feed-loop"}}</div>
+{{else}}
+    {{> "empty-state"}}
+{{/if}}

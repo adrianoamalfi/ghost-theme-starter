@@ -1,0 +1,47 @@
+{
+  "name": "site-hero",
+  "description": "Homepage hero in four styles from Spectra: Featured, Masthead, Statement, Index (real topics and counts). Fills home-before.",
+  "css": [
+    "modules/site-hero.css"
+  ],
+  "slots": {
+    "home-before": "site-hero"
+  },
+  "settings": {
+    "show_hero": {
+      "type": "boolean",
+      "default": true,
+      "group": "homepage"
+    },
+    "hero_style": {
+      "type": "select",
+      "options": [
+        "Featured",
+        "Masthead",
+        "Statement",
+        "Index"
+      ],
+      "default": "Featured",
+      "group": "homepage",
+      "description": "Layout of the homepage hero"
+    },
+    "hero_eyebrow": {
+      "type": "text",
+      "default": "",
+      "group": "homepage",
+      "description": "Small line above the title, e.g. \"Hello, I'm\""
+    },
+    "personal_hero_headline": {
+      "type": "text",
+      "default": "",
+      "group": "homepage",
+      "description": "Statement hero: headline (defaults to the site description)"
+    },
+    "personal_hero_text": {
+      "type": "text",
+      "default": "",
+      "group": "homepage",
+      "description": "Statement hero: short line under the headline"
+    }
+  }
+}

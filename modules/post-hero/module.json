@@ -1,0 +1,47 @@
+{
+  "name": "post-hero",
+  "description": "Homepage hero from the latest featured post (Poster, Editorial, Split), a quiet photograph (Cover), a slideshow of up to five featured photographs, or the author (Personal); falls back to a site intro.",
+  "css": [
+    "modules/post-hero.css"
+  ],
+  "slots": {
+    "home-before": "post-hero"
+  },
+  "settings": {
+    "post_hero_style": {
+      "type": "select",
+      "options": [
+        "Poster",
+        "Editorial",
+        "Split",
+        "Cover",
+        "Slideshow",
+        "Personal"
+      ],
+      "default": "Poster",
+      "group": "homepage",
+      "description": "Hero: Poster, Editorial, Split, Cover or Slideshow (featured photos), Personal (the author)"
+    },
+    "personal_hero_headline": {
+      "type": "text",
+      "default": "",
+      "group": "homepage",
+      "description": "Personal hero: headline (defaults to the site title)"
+    },
+    "personal_hero_text": {
+      "type": "text",
+      "default": "",
+      "group": "homepage",
+      "description": "Personal hero: short line under the headline (defaults to the site description)"
+    },
+    "personal_hero_portrait": {
+      "type": "image",
+      "group": "homepage",
+      "description": "Personal hero: optional portrait"
+    }
+  },
+  "js": {
+    "import": "import { initHeroSlideshow } from './modules/hero-slideshow.js';",
+    "init": "initHeroSlideshow();"
+  }
+}

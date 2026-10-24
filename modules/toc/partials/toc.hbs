@@ -1,0 +1,9 @@
+{{!-- Shell filled by assets/js/modules/toc.js; stays hidden when the article has fewer than two headings. Native disclosure: closed on narrow screens (so the index never pushes the first paragraph down), open in the side gutter. Toggle: @custom.show_toc. --}}
+{{#if @custom.show_toc}}
+<details class="gh-toc-details" id="gh-toc-details" hidden>
+    <summary class="gh-toc-summary">{{t "On this page"}}</summary>
+    <nav class="gh-toc" id="gh-toc" aria-label="{{t "Table of contents"}}">
+        <ol class="gh-toc-list"></ol>
+    </nav>
+</details>
+{{/if}}

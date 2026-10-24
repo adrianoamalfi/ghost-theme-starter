@@ -1,0 +1,19 @@
+.gh-content pre { position: relative; }
+.gh-code-copy {
+    position: absolute; top: var(--space-2); right: var(--space-2);
+    display: inline-grid; place-items: center; width: 2rem; height: 2rem; padding: 0;
+    border: 1px solid color-mix(in oklab, currentColor 20%, transparent); border-radius: var(--radius);
+    background: color-mix(in oklab, currentColor 8%, transparent); color: inherit;
+    opacity: .55; transition: opacity .15s var(--ease), background-color .15s var(--ease);
+}
+.gh-content pre:hover .gh-code-copy, .gh-content pre:focus-within .gh-code-copy { opacity: 1; }
+.gh-code-copy:hover { background: color-mix(in oklab, currentColor 16%, transparent); }
+.gh-code-copy svg { width: 1rem; height: 1rem; }
+.gh-code-copy.is-copied { opacity: 1; color: var(--accent-ink); border-color: color-mix(in oklab, var(--accent) 40%, transparent); }
+.gh-code-lang {
+    position: absolute; top: var(--space-2); right: 3.25rem; font-family: var(--font-mono);
+    font-size: .75rem; letter-spacing: .04em; text-transform: uppercase; color: var(--color-muted); pointer-events: none;
+}
+.gh-content pre:has(.gh-code-lang) code { padding-right: 6rem; }
+@media (prefers-reduced-motion: reduce) { .gh-code-copy { transition: none; } }
+@media print { .gh-code-copy { display: none; } }

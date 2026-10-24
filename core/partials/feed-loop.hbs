@@ -1,0 +1,18 @@
+{{!-- The cards of a feed. Context: a page with `posts`. Params:
+        skip_from="N"   skip the first N-1 posts on page 1 only (posts a hero already shows)
+        skip_featured   true to leave out featured posts on page 1 (a slider shows them)
+        skip_id         leave out the post with this id on page 1 (the hero post)
+      Reads `pagination` from its context: inside a {{#get}} block pass pagination=../pagination (gscan rejects @root). --}}
+{{#if skip_from}}
+    {{#match pagination.page 1}}
+        {{#foreach posts from=skip_from}}{{> "feed-entry" skip_featured=../skip_featured skip_id=../skip_id}}{{/foreach}}
+    {{else}}
+        {{#foreach posts}}{{> "feed-item"}}{{/foreach}}
+    {{/match}}
+{{else}}
+    {{#match pagination.page 1}}
+        {{#foreach posts}}{{> "feed-entry" skip_featured=../skip_featured skip_id=../skip_id}}{{/foreach}}
+    {{else}}
+        {{#foreach posts}}{{> "feed-item"}}{{/foreach}}
+    {{/match}}
+{{/if}}

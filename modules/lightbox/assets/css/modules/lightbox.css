@@ -1,0 +1,30 @@
+.gh-zoomable { cursor: zoom-in; }
+.has-lightbox-open { overflow: hidden; }
+.gh-lightbox {
+    position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center;
+    gap: var(--space-2); padding: clamp(var(--space-4), 4vw, var(--space-7));
+    background: color-mix(in oklab, #000 88%, transparent); backdrop-filter: blur(4px);
+    animation: gh-lightbox-in .15s var(--ease);
+}
+.gh-lightbox[hidden] { display: none; }
+.gh-lightbox-figure { margin: 0; max-width: 100%; max-height: 100%; display: flex; flex-direction: column; align-items: center; gap: var(--space-3); }
+.gh-lightbox-figure img { max-width: 100%; max-height: 84vh; transition: opacity .25s var(--ease); width: auto; height: auto; border-radius: var(--radius); }
+.gh-lightbox-figure figcaption { white-space: pre-line; color: color-mix(in oklab, #fff 78%, transparent); font-size: .9rem; text-align: center; }
+.gh-lightbox-figure figcaption[hidden], .gh-lightbox-nav[hidden], .gh-lightbox-count[hidden] { display: none; }
+.gh-lightbox-count { font-size: .75rem; letter-spacing: .14em; color: color-mix(in oklab, #fff 62%, transparent); font-variant-numeric: tabular-nums; }
+.gh-lightbox.is-loading .gh-lightbox-figure img { opacity: .9; }
+.gh-lightbox-close, .gh-lightbox-nav {
+    display: inline-grid; place-items: center; width: 2.5rem; height: 2.5rem; flex-shrink: 0; padding: 0;
+    border: 0; border-radius: 50%; background: color-mix(in oklab, #fff 12%, transparent); color: #fff;
+    transition: background-color .15s var(--ease);
+}
+.gh-lightbox-close:hover, .gh-lightbox-nav:hover { background: color-mix(in oklab, #fff 24%, transparent); }
+.gh-lightbox-close { position: absolute; top: var(--space-4); right: var(--space-4); }
+.gh-lightbox-close svg, .gh-lightbox-nav svg { width: 1.5rem; height: 1.5rem; }
+@keyframes gh-lightbox-in { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .gh-lightbox { animation: none; } }
+@media (max-width: 40rem) {
+    .gh-lightbox-nav { position: absolute; bottom: var(--space-4); }
+    .gh-lightbox-prev { left: var(--space-4); }
+    .gh-lightbox-next { right: var(--space-4); }
+}

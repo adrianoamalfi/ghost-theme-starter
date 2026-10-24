@@ -1,0 +1,51 @@
+/*
+ * Phantasma skin: a light table. The photograph is the interface, set on a neutral grey (no tint, so colours read true),
+ * with a safelight red for the one thing that is selected. Titles in condensed Archivo, text in Archivo, the data of a
+ * frame (number, exposure, series) in JetBrains Mono. No radius, hairlines. Dark by default; readers can switch to light.
+ * The accent is the colour set in Ghost Admin; ink and fill derive from it so text on and in accent stays legible.
+ */
+:root {
+    color-scheme: dark;
+
+    --accent: #ff4d2e;
+
+    --color-bg: light-dark(#e4e4e4, #272727);
+    --color-surface: light-dark(#d6d6d6, #303030);
+    --color-text: light-dark(#161616, #ededed);
+    --color-muted: light-dark(#4d4d4d, #b4b4b4);
+    --color-border: light-dark(#bdbdbd, #474747);
+
+    --accent-ink: light-dark(oklch(from var(--accent) min(l, 0.44) c h), oklch(from var(--accent) max(l, 0.78) c h));
+    --accent-fill: light-dark(var(--accent), color-mix(in oklab, var(--accent) 80%, var(--color-text)));
+    --accent-soft: color-mix(in oklab, var(--accent) 10%, var(--color-bg));
+    --on-accent: oklch(from var(--accent-fill) clamp(0, calc((0.6 - l) * 1000), 1) 0 h);
+    --surface-dark: #1b1b1b;
+    --tile-tint: var(--color-surface);
+
+    --font-sans: 'Archivo', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --font-serif: var(--font-sans);
+    --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    --font-heading: var(--gh-font-heading, var(--font-sans));
+
+    --radius: 0;
+    --radius-lg: 0;
+    --radius-tile: 0;
+    --wrap: 96rem;
+    --gutter: clamp(1rem, 3vw, 2.5rem);
+    --measure: 40rem;
+    --header-h: 4.25rem;
+    --gap: clamp(.5rem, 1vw, .875rem);
+
+    /* Display scale: large and condensed */
+    --display-1: clamp(3rem, 1rem + 6vw, 6rem);
+    --display-2: clamp(2.25rem, 1rem + 4vw, 4.5rem);
+    --display-3: clamp(1.75rem, 1.1rem + 2vw, 2.75rem);
+}
+
+@media (max-width: 40rem) {
+    :root {
+        --display-1: clamp(2.75rem, 1.4rem + 9vw, 4rem);
+        --display-2: clamp(2.25rem, 1.4rem + 6vw, 3.25rem);
+        --display-3: clamp(1.75rem, 1.2rem + 3vw, 2.25rem);
+    }
+}

@@ -1,0 +1,4 @@
+/*
+ * Skin rules — the `skin` layer sits above core components, so plain
+ * selectors win without !important. Restyle, don't restructure.
+ */

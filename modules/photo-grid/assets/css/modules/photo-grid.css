@@ -1,0 +1,49 @@
+/* Photo feed. The photograph is the card: no radius, no text block, a quiet caption on hover. */
+.gh-feed--photos { --photo-gap: clamp(.5rem, 1vw, .875rem); }
+
+/* Rows (justified): every row is filled edge to edge and keeps the photos in order. Pure CSS: each item grows in
+   proportion to its aspect ratio (--w / --h, set on the card); the filler stops the last row from stretching. */
+.gh-feed--rows { display: flex; flex-wrap: wrap; gap: var(--photo-gap); --row-height: clamp(11rem, 22vw, 20rem); }
+.gh-feed--rows::after { content: ''; flex-grow: 1000000; }
+.gh-feed--rows .gh-photo { flex: calc(var(--w) / var(--h) * 100) 1 calc(var(--w) / var(--h) * var(--row-height)); min-width: 0; }
+.gh-feed--rows .gh-photo-link { display: block; aspect-ratio: calc(var(--w) / var(--h)); }
+.gh-feed--rows .gh-photo-image { width: 100%; height: 100%; object-fit: cover; }
+.gh-feed--rows .gh-photo-empty { height: 100%; aspect-ratio: auto; }
+@media (max-width: 40rem) { .gh-feed--rows { --row-height: 12rem; } }
+
+/* Masonry: columns keep each photo at its own proportions (reading order runs down the columns) */
+.gh-feed--masonry { display: block; columns: 3 22rem; column-gap: var(--photo-gap); }
+.gh-feed--masonry .gh-photo { break-inside: avoid; margin-bottom: var(--photo-gap); }
+.gh-feed--masonry .gh-photo-image { width: 100%; height: auto; }
+
+/* Uniform: an even grid of cropped frames */
+.gh-feed--uniform { display: grid; gap: var(--photo-gap); grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr)); }
+.gh-feed--uniform .gh-photo-link { aspect-ratio: 4 / 5; }
+.gh-feed--uniform .gh-photo-image { width: 100%; height: 100%; object-fit: cover; }
+
+/* Single column: one large photograph at a time */
+.gh-feed--single { display: grid; gap: var(--space-7); max-width: 72rem; margin-inline: auto; }
+.gh-feed--single .gh-photo-image { width: 100%; height: auto; }
+
+.gh-photo { position: relative; }
+.gh-photo-link { position: relative; display: block; overflow: hidden; color: inherit; text-decoration: none; background: var(--color-surface); }
+.gh-photo-image { display: block; transition: transform .8s var(--ease), filter .4s var(--ease); }
+.gh-photo-link:hover .gh-photo-image, .gh-photo-link:focus-visible .gh-photo-image { transform: scale(1.025); }
+.gh-photo-empty { display: grid; place-items: center; aspect-ratio: 4 / 5; padding: var(--space-5); text-align: center; font-family: var(--font-heading); font-size: 1.5rem; color: var(--color-muted); }
+
+.gh-photo-caption {
+    position: absolute; inset: auto 0 0 0; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-2) var(--space-4);
+    padding: var(--space-5) var(--space-4) var(--space-4); color: oklch(.98 .005 270);
+    background: linear-gradient(to top, oklch(.12 .01 270 / .78), transparent);
+    opacity: 0; transform: translateY(.4rem); transition: opacity .35s var(--ease), transform .35s var(--ease);
+}
+.gh-photo-link:hover .gh-photo-caption, .gh-photo-link:focus-visible .gh-photo-caption { opacity: 1; transform: none; }
+.gh-photo-title { font-family: var(--font-heading); font-size: 1.15rem; line-height: 1.2; }
+.gh-photo-tag { font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; opacity: .8; }
+@media (hover: none) { .gh-photo-caption { opacity: 1; transform: none; } }
+
+.gh-photo--locked .gh-photo-image { filter: blur(14px) saturate(.8); transform: scale(1.06); }
+.gh-photo-lock { position: absolute; left: 50%; top: 50%; display: inline-flex; align-items: center; gap: var(--space-1); padding: var(--space-2) var(--space-3); border-radius: 999px; transform: translate(-50%, -50%); background: var(--color-text); color: var(--color-bg); font-size: .8rem; font-weight: 600; }
+.gh-photo-lock .gh-icon { width: .875rem; height: .875rem; }
+:focus-visible.gh-photo-link, .gh-photo-link:focus-visible { outline-offset: -3px; }
+@media (prefers-reduced-motion: reduce) { .gh-photo-image, .gh-photo-caption { transition: none; } .gh-photo-link:hover .gh-photo-image { transform: none; } }

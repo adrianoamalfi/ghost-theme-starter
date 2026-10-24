@@ -1,0 +1,39 @@
+{{!-- Header with four layouts. Setting: header_style (Inline, Stacked, Centered, Sidebar: a fixed left rail from 64rem, the top bar below it). Replaces the core header via the header-layout slot.
+      Inline: brand | navigation | actions. Stacked: brand centred (actions at the right), navigation centred below. Centered: navigation | brand | actions on one row.
+      The account button text comes from the header-account slot (default: Sign in / Account). Keeps the ids core/nav.js needs. --}}
+<header id="gh-header" class="gh-hdr{{#match @custom.header_style "Stacked"}} gh-hdr--stacked{{else match @custom.header_style "Centered"}} gh-hdr--centered{{else match @custom.header_style "Sidebar"}} gh-hdr--centered gh-hdr--rail{{/match}}">
+    <div class="gh-hdr-inner">
+        <a class="gh-hdr-brand" href="{{@site.url}}">
+            {{#if @site.logo}}<img src="{{@site.logo}}" alt="{{@site.title}}" height="32" decoding="async">{{else}}{{@site.title}}{{/if}}
+        </a>
+
+        <nav class="gh-hdr-nav" id="gh-nav" aria-label="{{t "Main navigation"}}">
+            {{navigation}}
+            {{!-- Mobile only: the colour switch moves from the bar into the open menu (renders only when a module fills the slot) --}}
+            <div class="gh-hdr-nav-extras">{{#> header-scheme}}{{/header-scheme}}</div>
+        </nav>
+        {{!-- Sidebar only (desktop): the description under the wordmark and the foot slot under the menu --}}
+        {{#match @custom.header_style "Sidebar"}}
+            {{#if @site.description}}<p class="gh-hdr-tagline">{{@site.description}}</p>{{/if}}
+            <div class="gh-hdr-rail-foot">{{> "header-rail-foot"}}</div>
+        {{/match}}
+
+        <div class="gh-hdr-actions">
+            {{> "header-actions"}}
+            {{#> header-account}}
+                {{#if @site.members_enabled}}
+                    {{#if @member}}
+                        <a class="gh-button gh-hdr-account" href="#/portal/account" data-portal="account">{{t "Account"}}</a>
+                    {{else}}
+                        <a class="gh-button gh-hdr-account" href="#/portal/signin" data-portal="signin">{{t "Sign in"}}</a>
+                    {{/if}}
+                {{/if}}
+            {{/header-account}}
+            <button class="gh-icon-button" type="button" data-ghost-search aria-label="{{t "Search"}}">{{> "icons/search"}}</button>
+            <kbd class="gh-search-kbd" aria-hidden="true">⌘K</kbd>
+            {{#> header-scheme}}{{> "scheme-toggle"}}{{/header-scheme}}
+            <button class="gh-icon-button gh-hdr-burger" type="button" id="gh-burger" aria-label="{{t "Open menu"}}"
+                data-label-close="{{t "Close menu"}}" aria-expanded="false" aria-controls="gh-nav">{{> "icons/menu"}}</button>
+        </div>
+    </div>
+</header>

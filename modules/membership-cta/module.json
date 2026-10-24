@@ -1,0 +1,11 @@
+{
+  "name": "membership-cta",
+  "description": "Upgrade/sign-in panel shown where gated content is cut off (members-only and paid posts).",
+  "css": [
+    "modules/membership-cta.css"
+  ],
+  "slots": {
+    "post-after-content": "membership-cta"
+  },
+  "order": 10
+}

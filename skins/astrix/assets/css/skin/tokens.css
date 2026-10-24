@@ -1,0 +1,45 @@
+/*
+ * Astrix skin: the Astryx "neutral" palette expressed as the starter's tokens.
+ * Flat elevation: separation comes from surface contrast and hairline borders, never shadows.
+ * The accent is the one chosen in Ghost Admin (default.hbs publishes it as --accent).
+ */
+:root {
+    --accent: #262626;
+
+    --color-bg: light-dark(#f1f1f1, #1b1b1b);
+    --color-surface: light-dark(#ffffff, #262626);
+    --color-text: light-dark(#171717, #fafafa);
+    /* Astryx's secondary text lands at 4.2:1; mixing toward the primary lifts it past AA in both schemes */
+    --color-muted: light-dark(color-mix(in oklab, #737373 72%, #171717), color-mix(in oklab, #a3a3a3 72%, #fafafa));
+    --color-border: light-dark(#ebebeb, #ffffff1a);
+
+    /* Accent: raw on light, lifted toward the ink on dark so a dark admin accent stays visible */
+    /* Contrast-safe by construction (any admin accent): ink is pushed toward legibility on either scheme, and the
+       text on a solid fill is black or white depending on the fill's lightness. */
+    --accent-ink: light-dark(oklch(from var(--accent) min(l, 0.44) c h), oklch(from var(--accent) max(l, 0.78) c h));
+    --accent-fill: light-dark(var(--accent), color-mix(in oklab, var(--accent) 65%, var(--color-text)));
+    --accent-soft: color-mix(in oklab, var(--accent) 8%, var(--color-bg));
+    --on-accent: oklch(from var(--accent-fill) clamp(0, calc((0.6 - l) * 1000), 1) 0 h);
+
+    /* Gold: the second voice (hover, focus, selection, premium). Overridden by secondary_accent. */
+    --accent-2: #f5b301;
+    --accent-2-ink: light-dark(#7d6000, #f5b301);
+    --on-accent-2: color-mix(in oklab, var(--accent-2) 24%, #000);
+
+    --font-sans: 'Figtree', 'Figtree Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+    /* Forced-dark ground of the hero and of text-over-photo (Astryx dark surface) */
+    --surface-dark: #262626;
+
+    --radius: .625rem;
+    --radius-lg: .75rem;
+    --radius-tile: 1.75rem;
+    --wrap: 100rem;
+    --gutter: 1.5rem;
+    --measure: 46rem; /* 65ch of the 20px prose */
+    --header-h: 4rem;
+    /* Table of contents: a rail beside the article from this width (Astrix keeps it at 1280px) */
+    --toc-rail-min: 80rem;
+}
+
+@media (max-width: 40rem) { :root { --gutter: 1rem; } }

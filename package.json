@@ -1,0 +1,24 @@
+{
+  "name": "ghost-theme-starter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Scaffolding for Ghost themes: shared core, optional modules, swappable skins.",
+  "scripts": {
+    "create": "node bin/create-theme.mjs",
+    "sync": "node bin/sync.mjs",
+    "add-module": "node bin/add-module.mjs",
+    "test": "node --test test/*.test.mjs",
+    "docs": "node bin/docs.mjs",
+    "remove-module": "node bin/remove-module.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adrianoamalfi/ghost-theme-starter.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Adriano Amalfi",
+    "url": "https://adrianoamalfi.com"
+  }
+}

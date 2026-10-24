@@ -1,0 +1,25 @@
+{{!-- Feed tile. Context: a post. A photo fills the tile (light ink over a scrim); without one the tile takes a tint of the accent. --}}
+<article class="gh-tile gh-fc{{#if feature_image}} gh-fc--photo{{/if}} {{post_class}}" style="view-transition-name: card-{{id}}">
+    {{#if feature_image}}
+        <a class="gh-fc-image-link" href="{{url}}" tabindex="-1" aria-hidden="true">
+            <img class="gh-fc-image"
+                srcset="{{img_url feature_image size="s" format="webp"}} 320w,
+                        {{img_url feature_image size="m" format="webp"}} 640w,
+                        {{img_url feature_image size="l" format="webp"}} 1024w"
+                sizes="(min-width: 48rem) 36rem, 100vw"
+                src="{{img_url feature_image size="m" format="webp"}}"
+                alt="" width="{{feature_image_width}}" height="{{feature_image_height}}"
+                {{#has index="0"}}loading="eager" fetchpriority="high"{{else}}loading="lazy"{{/has}}
+                decoding="async">
+        </a>
+    {{/if}}
+    <div class="gh-fc-body">
+        <h3 class="gh-fc-title" style="view-transition-name: title-{{id}}"><a href="{{url}}">{{title}}</a></h3>
+        <p class="gh-fc-excerpt">{{#if custom_excerpt}}{{custom_excerpt}}{{else}}{{excerpt words="28"}}{{/if}}</p>
+        <div class="gh-fc-meta">
+            {{#primary_tag}}<span class="gh-fc-tag">{{name}}</span>{{/primary_tag}}
+            {{> "post-meta" card=true}}
+            {{#unless access}}<span class="gh-badge">{{> "icons/lock"}}{{t "Members"}}</span>{{/unless}}
+        </div>
+    </div>
+</article>

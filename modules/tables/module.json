@@ -1,0 +1,7 @@
+{
+  "name": "tables",
+  "description": "Wide tables scroll inside a focusable, labelled region instead of widening the page.",
+  "postCss": ["modules/tables.css"],
+  "postJs": { "import": "import { initTables } from './modules/tables.js';", "init": "initTables();" },
+  "slots": { "post-after-content": "tables-labels" }
+}

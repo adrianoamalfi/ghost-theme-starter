@@ -1,0 +1,12 @@
+{{!-- One neighbour in the photo navigation. Context: the neighbouring post. Param: dir ("prev" or "next"). --}}
+<a class="gh-photo-nav-link gh-photo-nav-link--{{dir}}" href="{{url}}" rel="{{dir}}">
+    {{#if feature_image}}
+        <img class="gh-photo-nav-thumb" src="{{img_url feature_image size="m" format="webp"}}" width="640" height="427" alt="" loading="lazy" decoding="async">
+    {{else}}
+        <span class="gh-photo-nav-thumb gh-photo-nav-thumb--empty" aria-hidden="true"></span>
+    {{/if}}
+    <span class="gh-photo-nav-label">
+        <span class="gh-photo-nav-kicker">{{#match dir "prev"}}{{t "Previous photo"}}{{else}}{{t "Next photo"}}{{/match}}</span>
+        <span class="gh-photo-nav-title">{{title}}</span>
+    </span>
+</a>

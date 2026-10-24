@@ -1,0 +1,15 @@
+{
+  "settings": {
+    "post_hero_style": "header_style",
+    "header_style": "navigation_layout"
+  },
+  "values": {
+    "show_author_meta": {
+      "Name and photo": "Name and avatar"
+    },
+    "header_style": {
+      "Inline": "Logo on the left",
+      "Centered": "Logo in the middle"
+    }
+  }
+}

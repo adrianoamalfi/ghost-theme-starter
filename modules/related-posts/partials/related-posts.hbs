@@ -1,0 +1,30 @@
+{{!-- Related posts by primary tag, falling back to latest. Context: post. Toggle: @custom.show_related_posts. --}}
+{{#if @custom.show_related_posts}}
+{{#if primary_tag}}
+{{#get "posts" filter="tags:[{{primary_tag.slug}}]+id:-{{id}}" include="tags,authors" limit="3" as |related|}}
+    {{#if related}}
+        <section class="gh-related gh-wrap">
+            <h2 class="gh-related-title">{{t "Keep reading"}}</h2>
+            <div class="gh-feed gh-feed--photos gh-feed--uniform gh-related-feed">
+                {{#foreach related}}
+                    {{> "feed-item" force_lazy=true}}
+                {{/foreach}}
+            </div>
+        </section>
+    {{/if}}
+{{/get}}
+{{else}}
+{{#get "posts" filter="id:-{{id}}" include="tags,authors" limit="3" as |related|}}
+    {{#if related}}
+        <section class="gh-related gh-wrap">
+            <h2 class="gh-related-title">{{t "Keep reading"}}</h2>
+            <div class="gh-feed gh-feed--photos gh-feed--uniform gh-related-feed">
+                {{#foreach related}}
+                    {{> "feed-item" force_lazy=true}}
+                {{/foreach}}
+            </div>
+        </section>
+    {{/if}}
+{{/get}}
+{{/if}}
+{{/if}}

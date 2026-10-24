@@ -1,0 +1,23 @@
+{
+  "name": "header-styles",
+  "description": "Header with Inline, Stacked, Centered and Sidebar (fixed left rail) layouts and a Sign in / Account button; replaces the core header via the header-layout slot. Skins style it.",
+  "css": [
+    "modules/header-styles.css"
+  ],
+  "replaces": {
+    "header-layout": "header-styles"
+  },
+  "settings": {
+    "header_style": {
+      "type": "select",
+      "options": [
+        "Inline",
+        "Stacked",
+        "Centered",
+        "Sidebar"
+      ],
+      "default": "Inline",
+      "description": "Inline, Stacked (brand above menu), Centered (menu | brand | actions) or Sidebar (fixed left rail)"
+    }
+  }
+}

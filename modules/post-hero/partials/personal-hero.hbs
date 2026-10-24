@@ -1,0 +1,36 @@
+{{!-- Personal hero: the author is the protagonist, not the latest post. Everything comes from Design settings:
+      personal_hero_headline (fallback: site title), personal_hero_text (fallback: site description),
+      personal_hero_portrait (optional image). Social links come from the personal-hero-extra slot
+      (the social-links module fills it); the subscribe button from Portal. --}}
+<section class="gh-personal gh-personal--hero">
+    <div class="gh-personal-inner gh-wrap">
+        <div class="gh-personal-grid{{#unless @custom.personal_hero_portrait}} gh-personal-grid--text-only{{/unless}}">
+            <div class="gh-personal-text">
+                <h1 class="gh-personal-title">{{#if @custom.personal_hero_headline}}{{@custom.personal_hero_headline}}{{else}}{{@site.title}}{{/if}}</h1>
+                {{#if @custom.personal_hero_text}}
+                    <p class="gh-personal-lede">{{@custom.personal_hero_text}}</p>
+                {{else}}
+                    {{#if @site.description}}<p class="gh-personal-lede">{{@site.description}}</p>{{/if}}
+                {{/if}}
+                <div class="gh-personal-actions">
+                    {{> "subscribe-button"}}
+                    {{> "personal-hero-extra"}}
+                </div>
+            </div>
+            {{#if @custom.personal_hero_portrait}}
+                <picture>
+                    <source type="image/avif"
+                        srcset="{{img_url @custom.personal_hero_portrait size="m" format="avif"}} 640w,
+                                {{img_url @custom.personal_hero_portrait size="l" format="avif"}} 1024w"
+                        sizes="(max-width: 900px) 60vw, 420px">
+                    <img class="gh-personal-portrait"
+                        srcset="{{img_url @custom.personal_hero_portrait size="m" format="webp"}} 640w,
+                                {{img_url @custom.personal_hero_portrait size="l" format="webp"}} 1024w"
+                        sizes="(max-width: 900px) 60vw, 420px"
+                        src="{{img_url @custom.personal_hero_portrait size="l" format="webp"}}"
+                        width="840" height="1050" alt="{{@site.title}}" decoding="async" fetchpriority="high">
+                </picture>
+            {{/if}}
+        </div>
+    </div>
+</section>

@@ -1,0 +1,6 @@
+{{!-- Footer layout dispatcher. Setting: footer_style (Colophon, Signoff). --}}
+{{#match @custom.footer_style "Signoff"}}
+    {{> "footer-signoff"}}
+{{else}}
+    {{> "footer-colophon"}}
+{{/match}}

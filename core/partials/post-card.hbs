@@ -1,0 +1,14 @@
+{{!-- Context: a post object. Params: force_lazy=true outside the LCP area. --}}
+<article class="gh-card {{post_class}}{{#unless access}} gh-card--locked{{#has visibility="paid"}} gh-card--paid{{/has}}{{/unless}}">
+    <a class="gh-card-link" href="{{url}}">
+        {{> "post-card-media"}}
+
+        <div class="gh-card-body">
+            <h3 class="gh-card-title">{{title}}</h3>
+            <p class="gh-card-excerpt">{{#if custom_excerpt}}{{custom_excerpt}}{{else}}{{excerpt words="26"}}{{/if}}</p>
+            <div class="gh-card-meta">
+                {{> "post-meta" card=true}}
+            </div>
+        </div>
+    </a>
+</article>

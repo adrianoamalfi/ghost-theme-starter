@@ -1,0 +1,25 @@
+body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    line-height: var(--leading);
+    -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; text-wrap: balance; }
+a { text-underline-offset: .2em; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+::selection { background: var(--accent-soft); }
+
+.gh-visually-hidden {
+    position: absolute !important; width: 1px; height: 1px; margin: -1px; padding: 0;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.gh-skip-link {
+    position: absolute; left: var(--space-4); top: -4rem; z-index: 100;
+    padding: var(--space-2) var(--space-4); background: var(--color-text); color: var(--color-bg);
+    border-radius: var(--radius); transition: top .2s var(--ease);
+}
+.gh-skip-link:focus { top: var(--space-4); }
+
+/* Anchored headings clear the sticky header */
+.gh-content :is(h2, h3, h4)[id] { scroll-margin-top: calc(var(--header-h) + var(--space-4)); }

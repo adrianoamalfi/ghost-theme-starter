@@ -1,0 +1,25 @@
+{{!< default}}
+
+{{!-- Page template "About": a portrait (the page's feature image) beside the text. Contact details go in the page content. --}}
+{{#post}}
+<article class="gh-wrap gh-about {{post_class}}{{#unless feature_image}} gh-about--text-only{{/unless}}">
+    {{#if feature_image}}
+        <figure class="gh-about-media">
+            <img
+                srcset="{{img_url feature_image size="m" format="webp"}} 640w, {{img_url feature_image size="l" format="webp"}} 1024w, {{img_url feature_image size="xl" format="webp"}} 1920w"
+                sizes="(max-width: 56rem) 100vw, 40vw"
+                src="{{img_url feature_image size="l" format="webp"}}"
+                {{#if feature_image_width}}width="{{feature_image_width}}" height="{{feature_image_height}}"{{else}}width="1200" height="1500"{{/if}}
+                alt="{{feature_image_alt}}" fetchpriority="high" decoding="async">
+            {{#if feature_image_caption}}<figcaption>{{{feature_image_caption}}}</figcaption>{{/if}}
+        </figure>
+    {{/if}}
+    <div class="gh-about-text">
+        <h1 class="gh-about-title">{{title}}</h1>
+        {{#if custom_excerpt}}<p class="gh-about-lede">{{custom_excerpt}}</p>{{/if}}
+        <section class="gh-content">
+            {{content}}
+        </section>
+    </div>
+</article>
+{{/post}}

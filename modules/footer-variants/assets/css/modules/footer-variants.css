@@ -1,0 +1,46 @@
+/* Footer: two layouts, picked in Admin > Design (footer_style) */
+.gh-sf { color: var(--color-text); font-size: var(--text-sm); }
+.gh-sf-links svg { width: 1.1rem; height: 1.1rem; margin-right: .5rem; }
+.gh-sf-links, .gh-sf-nav .nav { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+.gh-sf-links a, .gh-sf-nav .nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.25rem;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+    color: inherit;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    text-decoration: underline transparent 1px;
+    text-underline-offset: 0.25em;
+    transition: text-decoration-color 200ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.gh-sf-links a:hover, .gh-sf-nav .nav a:hover { background: none; color: inherit; text-decoration-color: currentColor; }
+.gh-sf-nav .nav-current a, .gh-sf-nav .nav-current a:hover { background: none; color: inherit; text-decoration-color: currentColor; }
+.gh-sf-base p { margin: 0; color: var(--color-muted); }
+.gh-sf-credits { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-5); }
+.gh-sf-base a { color: inherit; text-decoration: underline transparent 1px; text-underline-offset: 0.25em; transition: text-decoration-color 200ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+.gh-sf-base a:hover { text-decoration-color: currentColor; }
+
+/* Colophon: a hairline, three quiet columns, a base line */
+.gh-sf--colophon { margin-top: var(--space-7); }
+.gh-sf-wrap { width: min(100% - var(--gutter) * 2, var(--wrap)); margin-inline: auto; padding: var(--space-6) 0 var(--space-5); border-top: 1px solid var(--color-border); }
+.gh-sf-top { display: grid; gap: var(--space-5); }
+.gh-sf-name { margin: 0; font-family: var(--font-heading); font-size: 1.5rem; font-weight: 600; letter-spacing: -0.03em; }
+.gh-sf-text { max-width: 34ch; margin: var(--space-2) 0 0; color: var(--color-muted); font-size: 1rem; }
+.gh-sf--colophon .gh-sf-base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-2) var(--space-4); margin-top: var(--space-6); }
+@media (min-width: 48rem) { .gh-sf-top { grid-template-columns: 5fr 3fr 3fr; gap: var(--space-6); } }
+
+/* Signoff: a closing tile with the subscribe call and the same columns */
+.gh-sf--signoff { width: min(100% - var(--gutter) * 2, var(--wrap)); margin: var(--space-7) auto var(--space-3); }
+.gh-sf-tile { --tile-bg: var(--tile-tint); display: grid; gap: var(--space-6); padding: clamp(1.5rem, 4vw, 3rem); }
+.gh-sf-lead-row { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--space-5) var(--space-6); }
+.gh-sf-lead { max-width: 24ch; margin: 0; font-family: var(--font-heading); font-size: clamp(1.5rem, 1rem + 2.2vw, 2.75rem); font-weight: 500; line-height: 1.08; letter-spacing: -0.035em; text-wrap: balance; }
+.gh-sf-cols { display: grid; gap: var(--space-5); padding-top: var(--space-5); border-top: 1px solid color-mix(in oklab, currentColor 20%, transparent); }
+.gh-sf--signoff .gh-sf-base { display: grid; gap: var(--space-1); align-content: end; }
+@media (min-width: 48rem) {
+    .gh-sf-cols { grid-template-columns: 5fr 3fr 4fr; gap: var(--space-6); }
+    .gh-sf--signoff .gh-sf-base { text-align: right; justify-items: end; }
+}
+@media print { .gh-sf { display: none; } }

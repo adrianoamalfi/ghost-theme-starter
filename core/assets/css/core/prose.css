@@ -1,0 +1,32 @@
+/* Article body. Width rules for Koenig wide/full cards live in koenig.css. */
+.gh-canvas {
+    --canvas-w: min(100% - 2 * var(--gutter), var(--measure));
+    display: grid;
+    grid-template-columns:
+        [full-start] minmax(var(--gutter), 1fr)
+        [wide-start] minmax(0, calc((var(--wrap) - var(--measure)) / 2))
+        [main-start] min(var(--measure), 100% - 2 * var(--gutter))
+        [main-end] minmax(0, calc((var(--wrap) - var(--measure)) / 2))
+        [wide-end] minmax(var(--gutter), 1fr) [full-end];
+}
+.gh-canvas > * { grid-column: main-start / main-end; }
+.gh-content { font-size: 1.125rem; }
+.gh-content > * + * { margin-top: 1.4em; }
+.gh-content h2 { font-size: 1.8rem; margin-top: 2.2em; }
+.gh-content h3 { font-size: 1.4rem; margin-top: 1.8em; }
+.gh-content a { color: var(--accent-ink); }
+.gh-content ul, .gh-content ol { padding-left: 1.4em; }
+.gh-content ul { list-style: disc; }
+.gh-content ol { list-style: decimal; }
+.gh-content li + li { margin-top: .4em; }
+.gh-content blockquote { padding-left: var(--space-5); border-left: 3px solid var(--accent); color: var(--color-muted); font-style: italic; }
+.gh-content hr { border: 0; border-top: 1px solid var(--color-border); }
+.gh-content code { font-family: var(--font-mono); font-size: .9em; padding: .1em .35em; border-radius: 4px; background: var(--color-surface); }
+.gh-content pre { padding: var(--space-4); overflow-x: auto; border-radius: var(--radius); background: var(--color-surface); }
+.gh-content pre code { padding: 0; background: none; }
+.gh-content img { border-radius: var(--radius); }
+.gh-content figcaption { margin-top: var(--space-2); font-size: .875rem; color: var(--color-muted); text-align: center; }
+.gh-content table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+/* Without JS, long words wrap instead of widening the canvas; once the tables module wraps a table in a scroll region it scrolls instead */
+.gh-content > table, .gh-content :not(.gh-table-scroll) > table { overflow-wrap: anywhere; }
+.gh-content th, .gh-content td { padding: .6rem .8rem; border-bottom: 1px solid var(--color-border); text-align: left; }

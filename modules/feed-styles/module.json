@@ -1,0 +1,24 @@
+{
+  "name": "feed-styles",
+  "description": "Post feed as tiles in three styles from Spectra: Bento, Grid, List; replaces the core feed via the feed-layout slot.",
+  "css": [
+    "modules/feed-styles.css"
+  ],
+  "replaces": {
+    "feed-layout": "feed-styles-layout",
+    "feed-item": "feed-card"
+  },
+  "settings": {
+    "post_feed_style": {
+      "type": "select",
+      "options": [
+        "Bento",
+        "Grid",
+        "List"
+      ],
+      "default": "Bento",
+      "group": "homepage",
+      "description": "Bento: mixed-size tiles. Grid: uniform tiles. List: one per row"
+    }
+  }
+}

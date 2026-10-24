@@ -1,0 +1,2 @@
+{{!-- Referencing the settings from a template keeps gscan happy; Ghost itself injects --gh-font-heading / --gh-font-body from them, which tokens.css already reads. --}}
+<meta name="gh-fonts" content="{{@custom.heading_font}} / {{@custom.body_font}}">

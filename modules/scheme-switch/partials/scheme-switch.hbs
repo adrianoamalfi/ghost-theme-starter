@@ -1,0 +1,8 @@
+{{!-- Three-state colour scheme control (System / Light / Dark). Replaces the core one-button toggle. Wired by modules/scheme-switch.js; hidden without JS. --}}
+<div class="gh-scheme-switch" role="group" aria-label="{{t "Colour scheme"}}">
+    <button type="button" data-scheme-set="system" aria-pressed="false" aria-label="{{t "System"}}" title="{{t "System"}}">
+        <svg class="gh-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
+    </button>
+    <button type="button" data-scheme-set="light" aria-pressed="false" aria-label="{{t "Light"}}" title="{{t "Light"}}">{{> "icons/sun"}}</button>
+    <button type="button" data-scheme-set="dark" aria-pressed="false" aria-label="{{t "Dark"}}" title="{{t "Dark"}}">{{> "icons/moon"}}</button>
+</div>

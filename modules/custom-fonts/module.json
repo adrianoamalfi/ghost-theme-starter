@@ -1,0 +1,25 @@
+{
+  "name": "custom-fonts",
+  "description": "Typography choices in Ghost Admin (heading and body font). Ghost injects --gh-font-heading/--gh-font-body, which the core tokens already use. Costs 2 of the 20 settings.",
+  "slots": {
+    "head-extra": "custom-fonts-meta"
+  },
+  "settings": {
+    "heading_font": {
+      "type": "select",
+      "options": [
+        "Modern sans-serif",
+        "Elegant serif"
+      ],
+      "default": "Modern sans-serif"
+    },
+    "body_font": {
+      "type": "select",
+      "options": [
+        "Modern sans-serif",
+        "Elegant serif"
+      ],
+      "default": "Modern sans-serif"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{{!-- Authors, date and reading time. Context: a post. Param: card=true on cards (no author links by default).
+      The `meta-layout` slot lets a module (post-meta-options) replace this with its own rules. --}}
+{{#> meta-layout}}
+<div class="gh-meta">
+    {{#unless card}}
+        {{#foreach authors}}
+            <a href="{{url}}">{{name}}</a>{{#unless @last}}, {{/unless}}
+        {{/foreach}}
+        <span class="gh-meta-sep" aria-hidden="true">·</span>
+    {{/unless}}
+    <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
+    {{!-- reading_time is empty on gated posts: keep the separator with it --}}
+    {{#if access}}
+        <span class="gh-meta-sep" aria-hidden="true">·</span>
+        <span>{{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>
+    {{/if}}
+</div>
+{{/meta-layout}}

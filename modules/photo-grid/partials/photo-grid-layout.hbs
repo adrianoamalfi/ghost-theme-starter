@@ -1,0 +1,7 @@
+{{!-- Photo feed: images first, no text under them (the caption shows on hover and always on touch). Setting: grid_style
+      (Rows, Masonry, Uniform, Single column). Replaces the core feed via the feed-layout slot; skip params go to feed-loop. --}}
+{{#if posts}}
+    <div class="gh-feed gh-feed--photos gh-feed--{{#match @custom.grid_style "Masonry"}}masonry{{else match @custom.grid_style "Uniform"}}uniform{{else match @custom.grid_style "Single column"}}single{{else}}rows{{/match}}">{{> "feed-loop"}}</div>
+{{else}}
+    {{> "empty-state"}}
+{{/if}}

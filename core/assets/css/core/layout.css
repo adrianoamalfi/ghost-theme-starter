@@ -1,0 +1,31 @@
+.gh-wrap { width: min(100% - 2 * var(--gutter), var(--wrap)); margin-inline: auto; }
+.gh-main { min-height: 60vh; }
+.gh-feed-wrap { padding-block: var(--space-7); }
+.gh-section-title { margin-bottom: var(--space-5); font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem); letter-spacing: -.03em; }
+.gh-feed { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr)); }
+.gh-archive-header { padding-block: var(--space-7) var(--space-4); display: grid; gap: var(--space-3); justify-items: start; }
+.gh-archive-hero { position: relative; isolation: isolate; display: grid; align-items: end; min-height: min(64vh, 40rem); color-scheme: dark; color: oklch(.98 .005 270); background: var(--surface-dark); }
+.gh-archive-hero-image { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+.gh-archive-hero::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, oklch(.12 .01 270 / .82), oklch(.12 .01 270 / .25) 60%, transparent); }
+.gh-archive-hero-inner { display: grid; gap: var(--space-3); justify-items: start; padding-block: var(--space-8) var(--space-6); }
+.gh-archive-hero .gh-archive-text, .gh-archive-hero .gh-archive-count, .gh-archive-hero .gh-breadcrumbs, .gh-archive-hero .gh-eyebrow { color: oklch(.98 .005 270 / .82); }
+.gh-archive-title { font-size: clamp(2rem, 5vw, 3.25rem); }
+.gh-archive-count { font-size: .875rem; color: var(--color-muted); }
+.gh-archive-text { color: var(--color-muted); max-width: var(--measure); }
+.gh-error { padding-block: var(--space-8); display: grid; gap: var(--space-4); justify-items: start; }
+.gh-empty { grid-column: 1 / -1; padding-block: var(--space-7); display: grid; gap: var(--space-3); justify-items: start; }
+.gh-empty-title { font-size: 1.25rem; font-weight: 600; }
+.gh-empty-text { color: var(--color-muted); }
+
+/* Article aside (slot post-aside): hidden unless a module put visible content
+   in it. Below 1792px it is a block above the text; from 1792px it floats in
+   the left gutter, clear of the wide Koenig cards, so it never overlaps. */
+.gh-article-layout { position: relative; }
+.gh-article-aside:not(:has(> :not([hidden]))) { display: none; }
+.gh-article-aside { width: min(100% - 2 * var(--gutter), var(--measure)); margin: 0 auto var(--space-6); }
+@media (min-width: 112rem) {
+    .gh-article-aside {
+        position: absolute; inset-block: 0; width: 15rem; margin: 0;
+        left: calc(50% - var(--wrap) / 2 - 16rem);
+    }
+}

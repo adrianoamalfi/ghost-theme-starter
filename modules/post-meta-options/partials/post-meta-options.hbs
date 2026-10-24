@@ -1,0 +1,21 @@
+{{!-- Post meta with Design settings. Replaces the core meta row via the meta-layout slot.
+      show_author_meta: Name and photo | Name only | Hidden. show_reading_time: on/off.
+      Context: a post. Param: card=true on cards (authors are plain text, not links). --}}
+<div class="gh-meta">
+    {{#match @custom.show_author_meta "Hidden"}}{{else}}
+        <span class="gh-meta-authors">
+            {{#foreach authors}}
+                {{#if ../card}}
+                    <span class="gh-meta-author">{{#match @custom.show_author_meta "Name and photo"}}{{#if profile_image}}<img class="gh-avatar" src="{{img_url profile_image size="xs"}}" alt="" width="24" height="24" loading="lazy" decoding="async">{{/if}}{{/match}}<span>{{name}}</span></span>
+                {{else}}
+                    <a class="gh-meta-author" href="{{url}}">{{#match @custom.show_author_meta "Name and photo"}}{{#if profile_image}}<img class="gh-avatar" src="{{img_url profile_image size="xs"}}" alt="" width="40" height="40" decoding="async">{{/if}}{{/match}}<span>{{name}}</span></a>
+                {{/if}}
+            {{/foreach}}
+        </span>
+    {{/match}}
+    <time datetime="{{date published_at format="YYYY-MM-DD"}}">{{date published_at format="LL"}}</time>
+    {{#if @custom.show_reading_time}}
+        {{!-- reading_time is empty on gated posts --}}
+        {{#if access}}<span class="gh-meta-reading">{{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>{{/if}}
+    {{/if}}
+</div>

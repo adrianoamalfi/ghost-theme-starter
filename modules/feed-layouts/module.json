@@ -1,0 +1,9 @@
+{
+  "name": "feed-layouts",
+  "description": "Post feed layouts from Astrix: Bold grid, Mosaic, List, over the core image cards. Replaces the core feed via the feed-layout slot; an alternative to feed-styles.",
+  "css": ["modules/feed-layouts.css"],
+  "replaces": { "feed-layout": "feed-layouts-layout" },
+  "settings": {
+    "feed_layout": { "type": "select", "options": ["Bold grid", "Mosaic", "List"], "default": "Bold grid", "group": "homepage", "description": "Layout of the post feed" }
+  }
+}

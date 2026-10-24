@@ -1,0 +1,182 @@
+/* @font-face lives in partials/head-extra.hbs (version-hashed asset URLs, one download). */
+
+/* Pages cross-fade into each other; a photograph that is opened grows from its place in the sheet */
+@media (prefers-reduced-motion: no-preference) { @view-transition { navigation: auto; } }
+
+body { font-size: 1rem; line-height: 1.65; font-weight: 400; }
+h1, h2, h3, h4, .gh-hdr-brand, .gh-footer-brand, .gh-cover-title, .gh-photo-title {
+    font-stretch: 72%; font-weight: 650; letter-spacing: 0; line-height: 1;
+}
+h1, h2, h3, h4 { text-wrap: balance; }
+.gh-content { font-size: 1.0625rem; }
+.gh-content h2 { font-size: var(--display-3); margin-top: 3rem; }
+.gh-content h3 { font-size: 1.75rem; }
+.gh-content blockquote { font-size: 1.5rem; font-stretch: 85%; font-weight: 500; line-height: 1.25; border-left: 0; border-top: 1px solid var(--color-border); padding: var(--space-4) 0 0; color: var(--color-text); }
+.gh-content a { text-decoration-thickness: 1px; text-underline-offset: .25em; }
+
+/* Data labels: whatever describes a frame (series, date, counts, breadcrumbs, pagination) is set in mono */
+.gh-hdr-nav a, .gh-eyebrow, .gh-chip, .gh-meta, .gh-breadcrumbs, .gh-footer-nav a, .gh-pagination-label, .gh-post-nav-kicker,
+.gh-series-count, .gh-photo-tag, .gh-footer-meta, .gh-section-title, .gh-search-kbd, .gh-cover-meta, .gh-photo-hero figcaption,
+.gh-feature-image figcaption, .gh-photo-lock {
+    font-family: var(--font-mono); font-size: .75rem; letter-spacing: .02em; text-transform: none; font-weight: 450;
+}
+.gh-meta, .gh-footer-meta, .gh-breadcrumbs { color: var(--color-muted); }
+.gh-eyebrow { color: var(--accent-ink); text-decoration: none; }
+.gh-chip { background: transparent; border: 1px solid var(--color-border); color: var(--color-muted); border-radius: 0; }
+.gh-chip:hover { border-color: var(--accent-ink); color: var(--accent-ink); }
+
+/* Controls: squared; the primary button is the one accent-filled thing on a page */
+.gh-button, .gh-icon-button { border-radius: 0; }
+.gh-button { font-family: var(--font-mono); font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; font-weight: 600; padding: .8rem 1.4rem; }
+.gh-button--ghost { border-color: var(--color-border); }
+.gh-hdr .gh-button { padding: .55rem 1rem; }
+.gh-members-form input { border-radius: 0; font-family: var(--font-mono); }
+
+/* Header: the wordmark in condensed bold, the menu in mono */
+.gh-hdr { background: color-mix(in oklab, var(--color-bg) 88%, transparent); }
+.gh-hdr-brand { font-size: 1.6rem; }
+.gh-hdr-nav a { border-radius: 0; padding: .4rem .8rem; background: transparent; }
+.gh-hdr-nav a:hover, .gh-hdr-nav .nav-current a { background: transparent; color: var(--color-text); text-decoration: underline; text-underline-offset: .45em; text-decoration-thickness: 1px; }
+.gh-search-kbd { display: none; }
+.gh-hdr .gh-hdr-account { background: transparent; border: 0; padding: .4rem .5rem; color: var(--color-muted); text-transform: none; font-weight: 450; letter-spacing: .02em; }
+.gh-hdr .gh-hdr-account:hover { color: var(--color-text); text-decoration: underline; text-underline-offset: .45em; text-decoration-thickness: 1px; }
+.gh-hdr .gh-icon-button { color: var(--color-muted); }
+.gh-hdr .gh-icon-button:hover { color: var(--color-text); background: transparent; }
+
+/* Section headings: a mono label with a hairline */
+.gh-section-title { display: flex; align-items: center; gap: var(--space-4); margin-block: var(--space-7) var(--space-5); color: var(--color-muted); }
+.gh-section-title::after { content: ''; flex: 1; height: 1px; background: var(--color-border); }
+
+/* Hero */
+.gh-post-hero--poster { min-height: min(92vh, 60rem); }
+.gh-post-hero-title { font-stretch: 72%; font-weight: 650; letter-spacing: 0; line-height: .95; }
+.gh-post-hero-tag { background: transparent; border: 1px solid oklch(1 0 0 / .5); color: inherit; border-radius: 0; font-family: var(--font-mono); }
+.gh-personal-title { font-stretch: 72%; font-weight: 650; }
+.gh-cover-title { font-size: clamp(1.75rem, 1rem + 3vw, 3.5rem); }
+.gh-cover-meta { opacity: .9; }
+
+/* Articles */
+.gh-article-title { font-size: var(--display-1); line-height: .95; }
+.gh-article-excerpt { font-size: 1.4rem; font-stretch: 90%; font-weight: 400; line-height: 1.35; }
+
+/* Images and galleries: edge to edge, no rounding */
+.gh-content img, .gh-feature-image img, .gh-card-media { border-radius: 0; }
+.gh-content figcaption, .gh-feature-image figcaption { color: var(--color-muted); }
+.kg-gallery-container { gap: var(--gap); }
+.kg-gallery-image img { border-radius: 0; }
+
+::selection { background: color-mix(in oklab, var(--accent) 55%, transparent); }
+.gh-footer { border-top: 1px solid var(--color-border); background: transparent; margin-top: var(--space-8); }
+.gh-footer-brand { font-size: 1.75rem; }
+
+/* ---- The contact sheet ----
+   Each frame is numbered in the data strip under it (mono, counted by CSS across the feed, also when more load).
+   Hovering a frame puts a selection outline around it; a featured photograph has its number circled, like a grease
+   pencil mark on a proof sheet. */
+.gh-feed--photos { counter-reset: frame; }
+.gh-photo { counter-increment: frame; padding-bottom: 2.25rem; }
+.gh-photo-link { overflow: visible; background: transparent; }
+.gh-photo-image { background: var(--color-surface); transition: outline-color .2s var(--ease); outline: 2px solid transparent; outline-offset: 4px; }
+.gh-photo-link:hover .gh-photo-image, .gh-photo-link:focus-visible .gh-photo-image { transform: none; outline-color: var(--accent-fill); }
+.gh-photo-link:is(:hover, :focus-visible, :active) .gh-photo-image { view-transition-name: var(--vt, none); }
+.gh-photo-caption {
+    inset: 100% 0 auto 0; display: flex; align-items: baseline; justify-content: flex-start; flex-wrap: nowrap; gap: var(--space-3);
+    padding: .5rem 0 0; background: none; color: var(--color-muted); opacity: 1; transform: none;
+}
+.gh-photo-caption::before {
+    content: counter(frame, decimal-leading-zero); font-family: var(--font-mono); font-size: .75rem; font-weight: 600; color: var(--color-text);
+    flex: none; padding: .1rem .3rem; border: 1.5px solid transparent; border-radius: 50%;
+}
+.gh-photo.featured .gh-photo-caption::before { border-color: var(--accent-fill); transform: rotate(-5deg); padding-inline: .45rem; }
+.gh-photo-title { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 1rem; font-stretch: 85%; font-weight: 500; color: var(--color-text); }
+.gh-photo-tag { flex: none; max-width: 40%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; opacity: 1; }
+.gh-photo-lock { border-radius: 0; }
+.gh-photo--locked .gh-photo-image { clip-path: inset(2.83%); } /* undoes the 1.06 scale of the blur, so it stays inside the frame */
+@media (prefers-reduced-motion: reduce) { .gh-photo-image { transition: none; } }
+
+/* A photograph's own page: set on the table with a margin, the exposure line in mono under it */
+.gh-photo-hero { padding-block: var(--space-5) var(--space-3); }
+.gh-photo-hero figcaption { width: min(100%, var(--wrap)); text-align: left; color: var(--color-muted); }
+.gh-photo-heading { font-size: var(--display-2); }
+
+/* Over a cover hero the header floats transparent on the photograph, and turns solid once the page scrolls.
+   The Sidebar rail has its own ground from 64rem, so there the top bar is the only thing that floats. */
+@media (min-width: 48rem) {
+    body:has(.gh-cover):not(:has(.gh-hdr--rail)) .gh-hdr, body:has(.gh-cover) .gh-hdr--rail { transition: background-color .3s var(--ease), border-color .15s ease; }
+    body:has(.gh-cover):not(:has(.gh-hdr--rail)) .gh-hdr:not(.is-scrolled), body:has(.gh-cover) .gh-hdr--rail:not(.is-scrolled) {
+        background: transparent; backdrop-filter: none;
+        --color-text: oklch(.98 .005 270); --color-muted: oklch(.98 .005 270 / .78);
+        background-image: linear-gradient(to bottom, oklch(.12 .01 270 / .45), transparent);
+    }
+    body:has(.gh-cover) .gh-main { margin-top: calc(-1 * var(--header-h)); }
+}
+@media (min-width: 64rem) {
+    /* Rail: solid ground, cover hero fills the stage to its right */
+    body:has(.gh-hdr--rail) .gh-hdr--rail, body:has(.gh-cover) .gh-hdr--rail:not(.is-scrolled) {
+        background: var(--color-surface); background-image: none; --color-text: light-dark(#161616, #ededed); --color-muted: light-dark(#4d4d4d, #b4b4b4);
+    }
+    body:has(.gh-hdr--rail) .gh-main { margin-top: 0; }
+    body:has(.gh-hdr--rail) .gh-cover { height: 100svh; }
+    body:has(.gh-hdr--rail) .gh-cover-dots { right: var(--gutter); }
+}
+
+/* ---- Sidebar rail: the wordmark, one line about the studio, a vertical menu, then the way to write ---- */
+@media (min-width: 64rem) {
+    .gh-hdr--rail .gh-hdr-brand { font-size: 1.85rem; line-height: .95; text-wrap: balance; }
+    .gh-hdr--rail .gh-hdr-tagline { font-family: var(--font-mono); font-size: .72rem; line-height: 1.5; }
+    .gh-hdr--rail .gh-hdr-nav a { padding: .3rem 0; font-family: var(--font-sans); font-stretch: 85%; font-weight: 600; font-size: 1.15rem; letter-spacing: 0; color: var(--color-text); text-decoration: none; }
+    .gh-hdr--rail .gh-hdr-nav a:hover { color: var(--accent-ink); text-decoration: none; }
+    .gh-hdr--rail .gh-hdr-nav .nav-current a { color: var(--accent-ink); text-decoration: underline; text-underline-offset: .3em; text-decoration-thickness: 2px; }
+    .gh-hdr--rail .gh-hdr-actions { gap: 0; }
+    .gh-rail-cta { width: 100%; justify-content: center; text-align: center; }
+    .gh-rail-info { margin: 0; font-family: var(--font-mono); font-size: .72rem; line-height: 1.55; color: var(--color-muted); }
+    .gh-hdr--rail .gh-social-links { margin-left: -.5rem; }
+}
+
+/* ---- Gated posts: the upgrade panel is a sheet, not a card ---- */
+.gh-post-upgrade { border-radius: 0; background: var(--color-surface); border: 1px solid var(--color-border); text-align: left; margin-inline: auto; }
+.gh-post-upgrade-badge { border-radius: 0; background: transparent; color: var(--accent-ink); border: 1px solid currentColor; padding: .15rem .6rem; font-family: var(--font-mono); font-size: .75rem; font-weight: 600; }
+.gh-post-upgrade-title { font-size: var(--display-3); max-width: 16ch; margin-inline: 0; }
+.gh-post-upgrade-text { margin-inline: 0; max-width: 46ch; color: var(--color-muted); }
+.gh-post-upgrade-signin { font-family: var(--font-mono); font-size: .75rem; }
+.gh-post-upgrade-signin a { color: var(--color-text); text-decoration: underline; text-underline-offset: .25em; }
+
+/* ---- Keep reading: the same numbered frames as the home ---- */
+.gh-related { padding-block: var(--space-7); }
+.gh-related-title { font-family: var(--font-mono); font-stretch: 100%; font-weight: 450; font-size: .75rem; letter-spacing: .02em; display: flex; align-items: center; gap: var(--space-4); color: var(--color-muted); margin-bottom: var(--space-5); }
+.gh-related-title::after { content: ''; flex: 1; height: 1px; background: var(--color-border); }
+.gh-related-feed { grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr)); }
+.gh-related-feed .gh-photo-link { aspect-ratio: 3 / 2; }
+.gh-related-feed .gh-photo-image { width: 100%; height: 100%; object-fit: cover; }
+
+/* ---- Series on the home ---- */
+.gh-series-tile-name { font-stretch: 72%; font-weight: 650; font-size: 1.5rem; }
+.gh-series-tile-count { font-family: var(--font-mono); font-weight: 600; }
+.gh-series-tile-count::before { content: 'S/'; opacity: .7; }
+
+/* Targets: small text links get a 24px+ hit area (WCAG 2.2 2.5.8) without changing how they look */
+.gh-footer a, a.gh-eyebrow, .gh-breadcrumbs a { display: inline-block; padding-block: .4rem; }
+.gh-hdr-tagline a, .gh-content a, .gh-article-excerpt a { display: inline; padding: 0; }
+
+/* Rows: three or four frames to a line on a desktop, like a proof sheet */
+.gh-feed--rows { --row-height: clamp(9rem, 14vw, 14rem); }
+@media (max-width: 40rem) { .gh-feed--rows { --row-height: 12rem; } }
+
+/* A photograph's page: the text starts where the title starts, and the neighbours stay small */
+.gh-photo-page .gh-canvas {
+    grid-template-columns:
+        [full-start] minmax(var(--gutter), 1fr)
+        [wide-start main-start] min(var(--measure), 100% - 2 * var(--gutter))
+        [main-end] minmax(0, calc(var(--wrap) - var(--measure)))
+        [wide-end] minmax(var(--gutter), 1fr) [full-end];
+}
+.gh-photo-nav-kicker, .gh-photo-nav-hint { font-family: var(--font-mono); letter-spacing: .02em; text-transform: none; }
+.gh-photo-nav-title { font-stretch: 85%; font-weight: 600; font-size: 1.1rem; }
+
+/* Archive and other pages built from the pack: squared chips in mono, headers on the same left edge as the sections */
+.gh-topic { border-radius: 0; font-family: var(--font-mono); font-size: .75rem; letter-spacing: .02em; font-weight: 450; padding: .45rem .8rem; }
+.gh-topic:hover { border-color: var(--accent-ink); color: var(--accent-ink); background: transparent; }
+.gh-pack-section-title { font-stretch: 72%; font-weight: 650; letter-spacing: 0; }
+.gh-article--page .gh-article-header { width: min(100% - 2 * var(--gutter), var(--wrap)); margin-inline: auto; }
+.gh-article--page .gh-article-excerpt { max-width: var(--measure); }
+.gh-footer a { min-width: 1.5rem; }

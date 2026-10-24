@@ -1,0 +1,29 @@
+{
+  "name": "featured-slider",
+  "description": "Swipeable row of featured posts under the hero (show_featured_slider). Works with site-hero or post-hero (variants: its own home.hbs keeps the hero and the row out of the feed).",
+  "order": 60,
+  "css": [
+    "modules/featured-slider.css"
+  ],
+  "slots": {
+    "home-before": "featured-slider"
+  },
+  "settings": {
+    "show_featured_slider": {
+      "type": "boolean",
+      "default": false,
+      "group": "homepage",
+      "description": "Show the other featured posts as a swipeable row under the hero"
+    }
+  },
+  "requiresAny": [
+    "site-hero",
+    "post-hero"
+  ],
+  "variants": {
+    "post-hero": {
+      "home.hbs": "variants/post-hero/home.hbs",
+      "partials/featured-slider.hbs": "variants/post-hero/partials/featured-slider.hbs"
+    }
+  }
+}

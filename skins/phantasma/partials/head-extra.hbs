@@ -1,0 +1,11 @@
+{{!-- Phantasma skin fonts: Archivo (variable weight and width: condensed for titles, normal for text) and JetBrains Mono
+      (frame numbers and exposure data), Latin subsets, self-hosted.
+      Declared inline (not in the stylesheet) so each url() uses the same version-hashed {{asset}} URL as its preload.
+      Triple-stache: inside <style> an escaped "=" in ?v= would break the URL.
+      Never write a bare helper call inside CSS comments here: Handlebars evaluates it. --}}
+<link rel="preload" href="{{asset "fonts/archivo-latin-wdth-normal.woff2"}}" as="font" type="font/woff2" crossorigin>
+<style>
+    @font-face { font-family: 'Archivo'; font-style: normal; font-weight: 100 900; font-stretch: 62% 125%; font-display: swap; src: url("{{{asset "fonts/archivo-latin-wdth-normal.woff2"}}}") format("woff2"); }
+    @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 100 800; font-display: swap; src: url("{{{asset "fonts/jetbrains-mono-latin-wght-normal.woff2"}}}") format("woff2"); }
+</style>
+{{!-- @starter:slot --}}

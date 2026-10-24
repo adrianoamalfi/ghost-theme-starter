@@ -1,0 +1,10 @@
+{
+  "name": "toc",
+  "description": "Table of contents with scrollspy: sticky in the left gutter on wide screens, collapsible above the article otherwise.",
+  "postCss": ["modules/toc.css"],
+  "postJs": { "import": "import { initToc } from './modules/toc.js';", "init": "initToc();" },
+  "slots": { "post-aside": "toc" },
+  "settings": {
+    "show_toc": { "type": "boolean", "default": true, "description": "Show a table of contents on posts with two or more headings." }
+  }
+}

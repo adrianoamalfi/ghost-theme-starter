@@ -1,0 +1,30 @@
+{{!-- One photograph in the feed. Context: a post. The image keeps its own proportions (width/height reserve the space);
+      the alt text is the feature image's alt set in Ghost (empty = decorative), never the title the caption already shows. --}}
+<article class="gh-photo {{post_class}}{{#unless access}} gh-photo--locked{{/unless}}" style="--vt: gh-post-{{id}}; --w: {{#if feature_image}}{{#if feature_image_width}}{{feature_image_width}}{{else}}1600{{/if}}{{else}}4{{/if}}; --h: {{#if feature_image}}{{#if feature_image_height}}{{feature_image_height}}{{else}}1067{{/if}}{{else}}5{{/if}}">
+    <a class="gh-photo-link" href="{{url}}">
+        {{#if feature_image}}
+            {{#if access}}
+                <img class="gh-photo-image"
+                    srcset="{{img_url feature_image size="m" format="webp"}} 640w,
+                            {{img_url feature_image size="l" format="webp"}} 1024w,
+                            {{img_url feature_image size="xl" format="webp"}} 1920w"
+                    sizes="(max-width: 40rem) 100vw, (max-width: 64rem) 50vw, 33vw"
+                    src="{{img_url feature_image size="l" format="webp"}}"
+                    {{#if feature_image_width}}width="{{feature_image_width}}" height="{{feature_image_height}}"{{else}}width="1600" height="1067"{{/if}}
+                    alt="{{feature_image_alt}}"
+                    {{#has index="0"}}{{#unless force_lazy}}{{#is "home"}}loading="lazy"{{else}}loading="eager" fetchpriority="high"{{/is}}{{else}}loading="lazy"{{/unless}}{{else}}loading="lazy"{{/has}}
+                    decoding="async">
+            {{else}}
+                {{!-- Locked: Ghost cannot protect a feature image, so at least do not advertise it: a 30px stand-in, blurred by CSS --}}
+                <img class="gh-photo-image" src="{{img_url feature_image size="xxs" format="webp"}}" width="{{#if feature_image_width}}{{feature_image_width}}{{else}}1600{{/if}}" height="{{#if feature_image_height}}{{feature_image_height}}{{else}}1067{{/if}}" alt="" loading="lazy" decoding="async">
+            {{/if}}
+        {{else}}
+            <span class="gh-photo-empty" aria-hidden="true">{{title}}</span>
+        {{/if}}
+        <span class="gh-photo-caption">
+            <span class="gh-photo-title">{{title}}</span>
+            {{#primary_tag}}<span class="gh-photo-tag">{{name}}</span>{{/primary_tag}}
+        </span>
+        {{#unless access}}<span class="gh-photo-lock">{{> "icons/lock"}}{{#has visibility="paid"}}{{t "Premium"}}{{else}}{{t "Members"}}{{/has}}</span>{{/unless}}
+    </a>
+</article>

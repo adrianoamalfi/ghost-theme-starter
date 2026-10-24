@@ -1,0 +1,58 @@
+{{!< default}}
+
+{{!-- Post template "Photo": the photograph first, large and uncropped (it opens in the lightbox); title, details, a
+      print request button (when contact_email is set) and any further images below. Neighbours as thumbnails, arrow keys to browse.
+      Set the feature image's alt text in Ghost: it is the photograph's description. --}}
+{{#post}}
+<article class="gh-photo-page {{post_class}}">
+    {{#if feature_image}}
+        {{#if access}}
+            <figure class="gh-photo-hero" data-lightbox>
+                <img
+                    srcset="{{img_url feature_image size="l" format="webp"}} 1024w,
+                            {{img_url feature_image size="xl" format="webp"}} 1920w"
+                    sizes="100vw"
+                    src="{{img_url feature_image size="xl" format="webp"}}"
+                    {{#if feature_image_width}}width="{{feature_image_width}}" height="{{feature_image_height}}"{{else}}width="1920" height="1280"{{/if}}
+                    alt="{{feature_image_alt}}"
+                    fetchpriority="high" decoding="async"
+                    style="view-transition-name: gh-post-{{id}}">
+                {{#if feature_image_caption}}<figcaption>{{{feature_image_caption}}}</figcaption>{{/if}}
+            </figure>
+        {{else}}
+            {{!-- Locked: Ghost serves feature images to everyone, so show a 30px stand-in (blurred by CSS), never the photograph --}}
+            <figure class="gh-photo-hero gh-photo-hero--locked">
+                <img src="{{img_url feature_image size="xxs" format="webp"}}" {{#if feature_image_width}}width="{{feature_image_width}}" height="{{feature_image_height}}"{{else}}width="1920" height="1280"{{/if}} alt="" decoding="async" style="view-transition-name: gh-post-{{id}}">
+            </figure>
+        {{/if}}
+    {{/if}}
+
+    <header class="gh-wrap gh-photo-head">
+        <div>
+            {{#primary_tag}}<a class="gh-eyebrow" href="{{url}}">{{name}}</a>{{/primary_tag}}
+            <h1 class="gh-photo-heading">{{title}}</h1>
+            {{#if custom_excerpt}}<p class="gh-photo-lede">{{custom_excerpt}}</p>{{/if}}
+        </div>
+        <div class="gh-photo-aside">
+            {{> "post-meta"}}
+            {{#if @custom.contact_email}}<a class="gh-button gh-button--ghost" href="mailto:{{@custom.contact_email}}?subject={{encode (t "Print request")}}%3A%20{{encode title}}">{{t "Request a print"}}</a>{{/if}}
+        </div>
+    </header>
+
+    <section class="gh-content gh-canvas" id="gh-content">
+        {{content}}
+    </section>
+
+    {{#if tags.[1]}}
+        <footer class="gh-article-footer">
+            {{#foreach tags}}<a class="gh-chip" href="{{url}}">{{name}}</a>{{/foreach}}
+        </footer>
+    {{/if}}
+
+    {{> "post-after-content"}}
+
+    {{> "post-comments"}}
+</article>
+
+{{> "photo-nav"}}
+{{/post}}

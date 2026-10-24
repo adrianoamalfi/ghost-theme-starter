@@ -1,0 +1,25 @@
+{{!-- Context: a post --}}
+<article class="gh-tile gh-sh-f-feat{{#if feature_image}} gh-photo-ink{{/if}}">
+    {{#if feature_image}}
+        <img class="gh-sh-bg" src="{{img_url feature_image size="l"}}" alt="" width="960" height="640" fetchpriority="high">
+    {{/if}}
+    <div class="gh-sh-f-feat-body">
+        <p class="gh-sh-label">{{#if featured}}{{t "Featured"}}{{else}}{{t "Latest post"}}{{/if}}</p>
+        <h2 class="gh-sh-f-feat-title"><a href="{{url}}">{{title}}</a></h2>
+    </div>
+</article>
+
+    {{#get "posts" filter="id:-{{id}}" limit="3"}}
+        {{#if posts}}
+            <nav class="gh-sh-f-list" aria-label="{{t "Latest posts"}}">
+                {{#foreach posts}}
+                    <a href="{{url}}">
+                        <time datetime="{{date published_at format="YYYY-MM-DD"}}">{{date published_at format="D MMM YYYY"}}</time>
+                        <i aria-hidden="true"></i>
+                        <span>{{title}}</span>
+                        <b aria-hidden="true">&rarr;</b>
+                    </a>
+                {{/foreach}}
+            </nav>
+        {{/if}}
+    {{/get}}

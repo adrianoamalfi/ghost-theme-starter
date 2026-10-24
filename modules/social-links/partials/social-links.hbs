@@ -1,0 +1,43 @@
+{{!-- Social icon links. Native handles come from Ghost Admin → Settings → Social accounts; GitHub, Hugging Face, email and one free URL come from this theme's Design settings (@custom.social_*). Only configured accounts render; RSS is always shown. --}}
+<div class="gh-social-links">
+    {{#if @site.facebook}}
+        <a class="gh-icon-button" href="{{social_url type="facebook"}}" target="_blank" rel="me noopener noreferrer" aria-label="{{t "Facebook"}}">{{> "icons/social/facebook"}}</a>
+    {{/if}}
+    {{#if @site.twitter}}
+        <a class="gh-icon-button" href="{{social_url type="twitter"}}" target="_blank" rel="me noopener noreferrer" aria-label="{{t "X (Twitter)"}}">{{> "icons/social/x"}}</a>
+    {{/if}}
+    {{#if @site.threads}}
+        <a class="gh-icon-button" href="{{social_url type="threads"}}" target="_blank" rel="me noopener noreferrer" aria-label="{{t "Threads"}}">{{> "icons/social/threads"}}</a>
+    {{/if}}
+    {{#if @site.bluesky}}
+        <a class="gh-icon-button" href="{{social_url type="bluesky"}}" target="_blank" rel="me noopener noreferrer" aria-label="{{t "Bluesky"}}">{{> "icons/social/bluesky"}}</a>
+    {{/if}}
+    {{#if @site.mastodon}}
+        <a class="gh-icon-button" href="{{social_url type="mastodon"}}" target="_blank" rel="me noopener noreferrer" aria-label="{{t "Mastodon"}}">{{> "icons/social/mastodon"}}</a>
+    {{/if}}
+    {{#if @site.tiktok}}
+        <a class="gh-icon-button" href="{{social_url type="tiktok"}}" target="_blank" rel="me noopener noreferrer" aria-label="{{t "TikTok"}}">{{> "icons/social/tiktok"}}</a>
+    {{/if}}
+    {{#if @site.youtube}}
+        <a class="gh-icon-button" href="{{social_url type="youtube"}}" target="_blank" rel="me noopener noreferrer" aria-label="{{t "YouTube"}}">{{> "icons/social/youtube"}}</a>
+    {{/if}}
+    {{#if @site.instagram}}
+        <a class="gh-icon-button" href="{{social_url type="instagram"}}" target="_blank" rel="me noopener noreferrer" aria-label="{{t "Instagram"}}">{{> "icons/social/instagram"}}</a>
+    {{/if}}
+    {{#if @site.linkedin}}
+        <a class="gh-icon-button" href="{{social_url type="linkedin"}}" target="_blank" rel="me noopener noreferrer" aria-label="{{t "LinkedIn"}}">{{> "icons/social/linkedin"}}</a>
+    {{/if}}
+    {{#if @custom.social_github}}
+        <a class="gh-icon-button" href="https://github.com/{{@custom.social_github}}" target="_blank" rel="me noopener noreferrer" aria-label="{{t "GitHub"}}">{{> "icons/social/github"}}</a>
+    {{/if}}
+    {{#if @custom.social_huggingface}}
+        <a class="gh-icon-button" href="https://huggingface.co/{{@custom.social_huggingface}}" target="_blank" rel="me noopener noreferrer" aria-label="{{t "Hugging Face"}}">{{> "icons/social/huggingface"}}</a>
+    {{/if}}
+    {{#if @custom.social_custom_url}}
+        <a class="gh-icon-button" href="{{@custom.social_custom_url}}" target="_blank" rel="me noopener noreferrer" aria-label="{{t "Website"}}">{{> "icons/social/globe"}}</a>
+    {{/if}}
+    {{#if @custom.social_email}}
+        <a class="gh-icon-button" href="mailto:{{@custom.social_email}}" aria-label="{{t "Email"}}">{{> "icons/social/mail"}}</a>
+    {{/if}}
+    <a class="gh-icon-button" href="{{@site.url}}/rss/" aria-label="{{t "RSS feed"}}">{{> "icons/social/rss"}}</a>
+</div>
